@@ -1,0 +1,33 @@
+"use client";
+import { useState } from "react";
+import { exampleWorkspace } from "../fixtures/example-workspace";
+import { workspaceForMode, type View, type WorkspaceMode } from "../lib/workspace";
+import Connection from "./connection";
+import Sculpture from "./sculpture";
+import SourceChange from "./source-change";
+import AnswerInspector from "./answer-inspector";
+
+export default function Workspace() {
+  const [mode, setMode] = useState<WorkspaceMode>("live");
+  const [view, setView] = useState<View>("overview");
+  const data = workspaceForMode(mode, exampleWorkspace);
+  const openExample = () => { setMode("example"); setView("inspect"); };
+  return <main className={`workspace ${view !== "overview" ? "workspace-compact" : ""}`}>
+    <a href="#workspace-content" className="skip-link">Skip to workspace content</a>
+    <header className="masthead"><div className="brand-small"><span aria-hidden="true">✳</span> AFTERMATH <span className="brand-description">/ A RESEARCH INSTRUMENT</span></div><div className="mode-switch" role="group" aria-label="Workspace data mode"><button aria-pressed={mode === "live"} onClick={() => setMode("live")}>Live workspace</button><button aria-pressed={mode === "example"} onClick={() => setMode("example")}>Example workspace <span aria-hidden="true">↗</span></button></div></header>
+    <div className="title-composition"><div className="title-kicker"><span className="mono">SOURCE → ANSWER → EVIDENCE</span><span className="mono">FIELD NOTES / 001</span></div><h1>AFTER<span>MATH</span><span className="title-asterisk" aria-hidden="true">✳</span></h1><Sculpture/><p className="composition-caption">What changes<br/><b>when sources change?</b></p></div>
+    <nav className="workspace-nav" aria-label="Workspace views">{([{id:"overview", label:"Overview", number:"01"}, {id:"inspect", label:"Inspect changes", number:"02"}, {id:"experiments", label:"Experiments", number:"03"}] as const).map(item => <button key={item.id} aria-current={view === item.id ? "page" : undefined} onClick={() => setView(item.id)}><span className="mono">{item.number}</span>{item.label}<span className="nav-arrow" aria-hidden="true">↗</span></button>)}<span className="nav-edition mono">FOUNDATION EDITION</span></nav>
+    <div className={`mode-banner ${data ? "example-banner" : "live-banner"}`} role="status"><div><span className="mode-marker" aria-hidden="true">{data ? "◇" : "●"}</span><strong>{data ? "Example workspace" : "Live workspace"}</strong><span>{data ? "Deterministic illustrations. No live corpus, model calls, or research results." : "Real backend health. Corpus and assessment operations are not yet available."}</span></div>{data && <button className="text-button" onClick={() => setMode("live")}>Return to live ↗</button>}</div>
+    <Connection/>
+    <div id="workspace-content" tabIndex={-1}>
+      {view === "overview" && <section className="overview">
+        <div className="overview-main"><span className="eyebrow">01 / {data ? "Example corpus" : "Corpus overview"}</span><h2>{data ? <>One source changes.<br/>Several questions follow.</> : <>Ready to look.<br/>Nothing to assume.</>}</h2><p className="overview-description">{data ? "Explore a fictional export-policy revision. Follow the change through archived answers, individual claims, and the evidence behind each recorded assessment." : "Connect the evidence before drawing a conclusion. Your services can report readiness; a live corpus and semantic assessments are not available yet."}</p><button className="solid-button" onClick={openExample}>{data ? "Inspect this example" : "Explore the example workspace"}<span aria-hidden="true"> ↗</span></button><p className="action-note">{data ? "All records in this workspace are authored examples." : "An isolated, labeled illustration. No setup or model calls."}</p></div>
+        <aside className="notebook"><span className="notebook-index mono">RESEARCH NOTE / 01</span><span className="notebook-star" aria-hidden="true">✳</span><h3>A changed source<br/>is a question.<br/><em>Not a verdict.</em></h3><p>Freshness tells us where to look. Evidence and temporal scope explain what still holds.</p><span className="mono">KEEP THESE TWO THINGS APART.</span></aside>
+        <div className="context-register"><div><span className="eyebrow">Corpus / snapshot</span><h3>{data ? data.name : "No live corpus"}</h3><p className="mono">{data ? `${data.snapshot} · EXAMPLE` : "NOT AVAILABLE"}</p></div><div><span className="eyebrow">Latest source update</span><h3>{data ? "Export policy · r1 → r2" : "No update available"}</h3><p>{data ? "Example effective time: 01 Nov 2026, 00:00 UTC" : "Source ingestion has not been implemented."}</p></div><div><span className="eyebrow">Assessment activity</span><h3>{data ? "8 authored answer records" : "No live assessments"}</h3><p>{data ? "Illustrative workflow states; no measured performance." : "The semantic revalidation pipeline is not implemented."}</p></div></div>
+      </section>}
+      {view === "inspect" && (data ? <><SourceChange/><AnswerInspector workspace={data}/></> : <section className="unavailable-surface"><span className="eyebrow">02 / Inspect changes</span><div className="unavailable-content"><span className="empty-symbol" aria-hidden="true">↳</span><div><h2>No corpus to inspect. Yet.</h2><p>Source revisions, archived answers, claims, and assessments do not have live API operations in this foundation. Backend readiness does not mean the semantic pipeline is running.</p><button className="solid-button" onClick={openExample}>Inspect the labeled example ↗</button></div></div></section>)}
+      {view === "experiments" && <section className="unavailable-surface"><span className="eyebrow">03 / Experiments</span><div className="unavailable-content"><span className="empty-symbol" aria-hidden="true">∅</span><div><h2>Evidence before performance.</h2><p>Experiment execution and comparison reports are not available. The current Python CLI can validate configuration and database readiness; it does not run research experiments.</p><p className="experiment-note">No runs, scores, cost estimates, or model comparisons are shown. {data && "Example workspace mode does not simulate experimental results."}</p><button className="text-button" onClick={() => setView("overview")}>Back to overview ↗</button></div></div></section>}
+    </div>
+    <footer><span className="footer-brand">AFTERMATH<span aria-hidden="true">✳</span></span><p>Foundation only. No working semantic revalidation pipeline<br className="desktop-break"/> or research performance result is claimed.</p><span className="mono">OBSERVE CAREFULLY.<br/>KEEP THE EVIDENCE.</span></footer>
+  </main>;
+}
