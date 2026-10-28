@@ -19,6 +19,12 @@ BIN = Path(sys.executable).parent
 BAD_URL = "postgresql+psycopg://test:test@127.0.0.1:1/missing"
 
 
+def test_force_fallback_defaults_off() -> None:
+    assert Settings.model_fields["force_fallback"].default is False
+    settings = Settings(database_url=SecretStr(BAD_URL), force_fallback=False)
+    assert settings.force_fallback is False
+
+
 def test_config_rejects_non_postgres_and_production_local_origins() -> None:
     with pytest.raises(ValidationError):
         Settings(database_url=SecretStr("sqlite://"))
@@ -71,7 +77,7 @@ def test_migration_pgvector_jobs_and_ready(database_url: str) -> None:
             assert (
                 conn.execute(text("SELECT '[1,2,3]'::vector <-> '[1,2,3]'::vector")).scalar() == 0
             )
-            assert conn.execute(text("SELECT version_num FROM alembic_version")).scalar() == "0001"
+            assert conn.execute(text("SELECT version_num FROM alembic_version")).scalar() == "0006"
             conn.execute(
                 text("INSERT INTO workspaces (id,name) VALUES (:id, :name)"),
                 {"id": workspace, "name": "integration test"},

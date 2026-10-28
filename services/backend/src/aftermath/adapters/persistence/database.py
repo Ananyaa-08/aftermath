@@ -20,9 +20,11 @@ class PostgresProbe:
                     connection.execute(
                         text("""
                     SELECT EXISTS (SELECT 1 FROM pg_extension WHERE extname = 'vector')
-                    AND EXISTS (SELECT 1 FROM alembic_version WHERE version_num = '0001')
+                    AND EXISTS (SELECT 1 FROM alembic_version WHERE version_num = '0006')
                     AND to_regclass('public.workspaces') IS NOT NULL
                     AND to_regclass('public.jobs') IS NOT NULL
+                    AND to_regclass('public.document_versions') IS NOT NULL
+                    AND to_regclass('public.timeline_alignment_edges') IS NOT NULL
                 """)
                     ).scalar_one()
                 )

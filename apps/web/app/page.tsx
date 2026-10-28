@@ -1,2 +1,24 @@
-import Workspace from "../components/workspace";
-export default function Home() { return <Workspace/>; }
+export default function Home() {
+  return <main className="home">
+    <a className="skip-link" href="#home-content">Skip to content</a>
+    <header className="home-nav"><a href="/" className="home-brand">AFTERMATH <span aria-hidden="true">✳</span></a><nav aria-label="Main navigation"><a href="#how-it-works">The idea</a><a href="#available">The instrument</a><a href="/workspace">Workspace ↗</a></nav></header>
+    <section className="home-hero" id="home-content">
+      <h1 className="wordmark">aftermath</h1>
+      <div className="hero-body">
+        <div className="archive-window" role="img" aria-label="Original conceptual collage: layered source revisions, an archived answer, and a question about what still holds. Illustrative, not live evidence.">
+          <div className="archive-grid" aria-hidden="true"/>
+          <div className="paper-fragment fragment-back" aria-hidden="true"><span className="mono">SOURCE / REVISION 01</span><div className="fragment-rule"/><p>The record<br/>as it was.</p><div className="redaction"/><div className="redaction short"/><span className="fragment-number">01</span></div>
+          <div className="paper-fragment fragment-front" aria-hidden="true"><div className="fragment-top mono">SOURCE / REVISION 02 <span>↗</span></div><h2>A change<br/>in the<br/><em>margins.</em></h2><p>New source. Same question.<br/>A different point in time.</p><div className="document-lines"/><span className="circled-note">read<br/>again</span></div>
+          <div className="answer-slip" aria-hidden="true"><span className="mono">ARCHIVED ANSWER / ?</span><p>What still holds?</p><span className="slip-arrow">↳</span></div>
+          <span className="collage-stamp mono" aria-hidden="true">CONCEPT<br/>STUDY</span>
+        </div>
+        <aside className="hero-aside"><span className="eyebrow">An instrument for change</span><h2>When sources change, answers should not stay frozen.</h2><p>AFTERMATH is being built to trace document revisions back to grounded answers, examine the evidence that matters, and preserve snapshot-bound assessment history.</p><a className="solid-button" href="/workspace">Enter the workspace <span aria-hidden="true">↗</span></a><a className="home-text-link" href="#how-it-works">See how it works ↓</a></aside>
+      </div>
+    </section>
+    <section className="idea-section" id="how-it-works"><div><h2>What changes<br/>after the source <em>changes?</em></h2><div className="idea-copy"><span className="idea-asterisk" aria-hidden="true">✳</span><p>A revision is a reason to look again. It is not, by itself, proof that an answer is wrong. Time, authority and the exact supporting evidence all matter.</p></div></div></section>
+    <section className="flow-section" aria-label="The intended research workflow"><div><h3>Keep the<br/><em>source.</em></h3><p>Store original bytes and immutable revisions. Bind what is known to a corpus snapshot.</p><span className="flow-arrow" aria-hidden="true">↗</span></div><div><h3>Find the<br/><em>connection.</em></h3><p>Discover which archived answers may depend on a changed source. Candidates are not confirmed impacts.</p><span className="flow-arrow" aria-hidden="true">↗</span></div><div><h3>Revisit the<br/><em>evidence.</em></h3><p>Reassess selected answers under an explicit scope and policy. Keep the reasoning and history inspectable.</p><span className="flow-arrow" aria-hidden="true">↗</span></div></section>
+    <section className="instrument-section" id="available"><div><span className="section-index mono">02 / ON THE DESK</span><h2>A working archive.<br/>An honest beginning.</h2><p>Create a corpus, ingest revisions, inspect deterministic passage changes, and compare the evidence effective under named snapshots.</p><a href="/workspace" className="home-text-link">Open the live source record ↗</a></div><div className="instrument-preview"><div className="preview-heading mono">CAPABILITY REGISTER / STEP 2B</div><dl><div><dt>Original source bytes</dt><dd>STORED</dd></div><div><dt>Document revisions</dt><dd>IMMUTABLE</dd></div><div><dt>Knowledge boundary</dt><dd>SNAPSHOT-BOUND</dd></div><div><dt>Passage segmentation</dt><dd>DETERMINISTIC</dd></div><div><dt>Source + authority changes</dt><dd>INSPECTABLE</dd></div><div><dt>Effective timeline changes</dt><dd>RECORDED</dd></div><div><dt>Affected-answer discovery</dt><dd>UNAVAILABLE</dd></div><div><dt>Evidence + semantic reassessment</dt><dd>UNAVAILABLE</dd></div><div><dt>LLM verification + experiments</dt><dd>UNAVAILABLE</dd></div></dl><p>This is a capability preview, not a live activity feed. The workspace also includes a separately labeled, authored example of future answer assessment inspection.</p></div></section>
+    <section className="closing"><span className="mono">KEEP THE SOURCE. KEEP THE CONTEXT.</span><a href="/workspace">Take a closer look.<span aria-hidden="true">↗</span></a></section>
+    <footer className="home-footer"><a href="/">aftermath</a><span className="mono">A RESEARCH INSTRUMENT / 2026</span><span>Made for questions that outlive their sources.</span></footer>
+  </main>;
+}

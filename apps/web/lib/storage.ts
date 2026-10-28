@@ -1,0 +1,41 @@
+/** Temporal selection stays in Python. The browser displays returned activity records and does not invent them. */
+export type WorkspaceRecord = {id:string;name:string};
+export type CorpusRecord = {corpus_id:string;name:string;head_snapshot_id:string|null;document_count:number;version_count:number};
+export type DocumentRecord = {document_id:string;latest_version_id:string;source_seq:number;is_deletion:boolean;version_count:number};
+export type VersionRecord = {document_version_id:string;source_revision_id?:string;source_seq:number;source_timestamp:string;effective_from:string;effective_from_source:string;source_type:string;content_hash:string;source_bytes_hash:string;normalization_version:string;is_deletion:boolean;text:string;authority:Record<string,unknown>};
+export type SnapshotRecord = {snapshot_id:string;as_of:string;document_count:number};
+export type EffectiveResult = {snapshot_id:string;scope:string;evaluation_time:string|null;selected_version_id:string|null;active:boolean;version:VersionRecord|null;effective_to:string|null;fingerprint:string};
+export type DeliveryResult = {status:string;duplicate:boolean;snapshot_id:string|null;error_code:string|null;delivery_id:string};
+export type RetrievedPassage = {passage_version_id:string;document_id:string;document_version_id:string;start:number;end:number;text:string;score:number};
+export type AnswerCitation = {passage_version_id:string;document_id:string;document_version_id:string;quote:string;start:number;end:number;passage_start:number;passage_end:number};
+export type ProviderCitation = {passage_version_id:string;quote:string};
+export type AnswerUsage = {input_tokens:number|null;output_tokens:number|null;latency_ms:number|null;cost_usd:string|null};
+export type GroundedAnswer = {status:"ANSWERED"|"INSUFFICIENT_GROUNDING";answer_type?:"grounded"|"not_found";question:string;snapshot_id:string;answer_text:string|null;citations:AnswerCitation[];retrieved:RetrievedPassage[];returned_citations:ProviderCitation[];model_id:string;prompt_version:string;usage:AnswerUsage;answer_source:"LIVE"|"DEMO_FALLBACK";answer_id:string|null;error:{code:string;message:string}|null};
+export type ArchivedClaim = {claim_id:string;text:string;citations:ArchivedCitation[]};
+export type ArchivedAnswer = {answer_id:string;question:string;answer_text:string;snapshot_id:string;answer_type?:"grounded"|"not_found";answer_source:"LIVE"|"DEMO_FALLBACK";model_id:string;prompt_version:string;previous_answer_id:string|null;created_at:string;claims:ArchivedClaim[]};
+export type ActivityIndex = {delivery_id:string;document_id:string;parent_snapshot_id:string|null;snapshot_id:string;selected:number;queued:number;completed:number};
+export type ArchivedCitation = {passage_version_id:string;document_id:string;document_version_id:string;quote:string;start:number;end:number};
+export type ClaimVerdict = {claim_id:string;claim_text:string;status:string;explanation:string;old_evidence:ArchivedCitation[];new_evidence:ArchivedCitation[];answer_source:string};
+export type AssessmentRecord = {assessment_id:string;answer_id:string;snapshot_id:string;parent_snapshot_id:string|null;scope:string;policy_version:string;model_id:string;prompt_version:string;algorithm_version:string;selection_reason:string;semantic_status:string|null;answer_source:string;claims:ClaimVerdict[]};
+export type SourceChangeView = {document_id:string;old_passage_version_id:string|null;new_passage_version_id:string|null;old_text:string|null;new_text:string|null};
+export type AnswerPreview = {answer_id:string;question:string;answer_text:string;snapshot_id:string;scope:string;state:"SELECTED"|"NOT_REASSESSED";selection_reason:string|null;algorithm_version:string|null;previous_answer_id:string|null;assessment:AssessmentRecord|null;changes?:SourceChangeView[]};
+export type ActivityDetail = {delivery_id:string;document_id:string;parent_snapshot_id:string|null;snapshot_id:string;selected:number;queued:number;completed:number;changes:SourceChangeView[];answers:AnswerPreview[]};
+export type UploadedSource = {document_id:string;document_version_id:string|null;source_revision_id:string;snapshot_id:string|null;preview:string;text:string;passages:PassageRecord[];delivery:DeliveryResult};
+export type UpdateEventRecord = {delivery_id:string;update_event_id:string;as_of:string;expected_head:string|null;received_at:string;status:string;snapshot_id:string|null;error_code:string|null};
+export type ChangedDocumentRecord = {document_id:string;old_version_id:string|null;new_version_id:string;span_count:number;applicability_count:number};
+export type PassageRecord = {passage_version_id:string;ordinal:number;start:number;end:number;text:string;section_path:string[];lineage_id:string};
+export type AlignmentEdgeRecord = {lineage_edge_id:string;relation:string;alignment_score:number|null;alignment_confidence:"HIGH"|"LOW";from_passage_version_ids:string[];to_passage_version_ids:string[];reason:Record<string,unknown>};
+export type TimelineAlignmentRecord = {timeline_alignment_edge_id:string;applicability_change_id:string;old_document_version_id:string;new_document_version_id:string;relation:string;alignment_score:number|null;alignment_confidence:"HIGH"|"LOW";from_passage_version_ids:string[];to_passage_version_ids:string[];reason:Record<string,unknown>;recorded_by:"timeline-v1"|"migration-0004-reclassification";legacy_lineage_edge_id:string|null};
+export type ChangeFeatures = {numeric_change:boolean;numbers_old:string[];numbers_new:string[];date_change:boolean;dates_old:string[];dates_new:string[];negation_change:boolean;qualifiers_old:string[];qualifiers_new:string[];qualifier_change:boolean};
+export type ChangeSpanRecord = {change_span_id:string;kind:string;old_document_version_id:string|null;new_document_version_id:string|null;old_passage_version_id:string|null;new_passage_version_id:string|null;old_start:number|null;old_end:number|null;new_start:number|null;new_end:number|null;old_text:string|null;new_text:string|null;features:ChangeFeatures;alignment_confidence:"HIGH"|"LOW";effective_from:string;effective_to:string|null;applicability_change_id:string|null;lineage_edge_id:string|null;timeline_alignment_edge_id:string|null;reclassified_lineage_edge_id:string|null;feature_version:"features-v1"|null;text_diff_reused:boolean;origin:string;metadata:Record<string,unknown>};
+export type ApplicabilityRecord = {applicability_change_id:string;interval_from:string;interval_to:string|null;old_effective_version_id:string|null;new_effective_version_id:string|null;reason:string;text_diff_reused:boolean;parent_snapshot_id:string|null;result_snapshot_id:string};
+export type DocumentComparison = {delivery_id:string;document_id:string;parent_snapshot_id:string|null;result_snapshot_id:string;old_version:VersionRecord|null;new_version:VersionRecord;old_passages:PassageRecord[];new_passages:PassageRecord[];edges:AlignmentEdgeRecord[];timeline_alignments:TimelineAlignmentRecord[];spans:ChangeSpanRecord[];applicability_changes:ApplicabilityRecord[]};
+export class StorageError extends Error { constructor(public code:string, message:string) { super(message); } }
+export async function storageRequest<T>(path:string, body?:unknown, signal?:AbortSignal):Promise<T> {
+  const response = await fetch(`/api/storage/workspaces${path}`, {method:body === undefined ? "GET" : "POST", headers:body === undefined ? undefined : {"Content-Type":"application/json","X-AFTERMATH-Request":"same-origin-browser"}, body:body === undefined ? undefined : JSON.stringify(body), cache:"no-store",signal});
+  const data = await response.json();
+  if (!response.ok) throw new StorageError(data?.error?.code ?? "REQUEST_FAILED", data?.error?.message ?? "Storage request failed");
+  return data as T;
+}
+export function sourceBase64(text:string) { const bytes = new TextEncoder().encode(text); if(bytes.length > 262144) throw new StorageError("SOURCE_TOO_LARGE","Source exceeds 256 KiB"); let binary=""; for(const byte of bytes) binary += String.fromCharCode(byte); return btoa(binary); }
+export function deliveryLabel(result:DeliveryResult) { return `${result.status}${result.duplicate ? " · DUPLICATE" : ""} · ${result.snapshot_id ?? "No new snapshot"}${result.error_code ? ` · ${result.error_code}` : ""}`; }

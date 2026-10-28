@@ -3,6 +3,7 @@ from types import TracebackType
 from typing import Protocol
 from uuid import UUID
 
+from aftermath.core.answers import ProviderAnswer, RetrievedPassage
 from aftermath.core.contracts import (
     AnswerRef,
     DocumentRevisionRef,
@@ -22,6 +23,16 @@ class EmbeddingModel(Protocol):
 
 class EvidenceVerifier(Protocol):
     def verify(self, request: VerificationInput) -> VerificationOutcome: ...
+
+
+class AnswerProvider(Protocol):
+    """Answer generation only. Not a verifier and not a policy-resolved verdict."""
+
+    provider_id: str
+    model_id: str
+    prompt_version: str
+
+    def answer(self, question: str, passages: Sequence[RetrievedPassage]) -> ProviderAnswer: ...
 
 
 class TransitionPredictor(Protocol):
