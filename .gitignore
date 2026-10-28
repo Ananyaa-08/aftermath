@@ -13,3 +13,13 @@ __pycache__/
 .DS_Store
 dist/
 .uv-cache/
+
+*.zip
+discarded-*.py
+AGENTS.md
+docs/*.md
+docs/acceptance/
+docs/demo/
+apps/web/docs/
+.env
+*.dump

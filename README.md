@@ -1,83 +1,94 @@
-# AFTERMATH
+# aftermath
 
-Foundation only. No working semantic revalidation pipeline or research performance result is claimed.
+Revalidating archived grounded answers when their source documents change.
 
-The frontend now provides an editorial research workspace with live readiness and a clearly labeled Example workspace. Example source diffs, answer filtering, claim inspection and history use isolated authored fixtures; none are model outputs or live corpus records. See [frontend verification and screenshots](docs/frontend-refinement.md).
+## What it is
 
-Step 1 provides a Next.js shell, FastAPI health endpoints, shared Python contracts/ports, an idle worker, a configuration-validation CLI, and PostgreSQL/pgvector migrations. There are no semantic assessment endpoints or model calls.
+AFTERMATH is a research prototype. A user uploads documents into a corpus and asks questions. Each answer is grounded: it cites the exact passage it came from, and is archived with that citation at a specific corpus snapshot.
 
-## Local setup
+When a document is later revised, AFTERMATH detects which stored passages changed, finds only the archived answers whose cited passage changed, and flags them for reassessment. Answers whose evidence did not change are left alone.
 
-Prerequisites: Docker running, Python 3.13, uv, Node 20.9+ and npm. This build was verified with Python 3.13.1, uv 0.13.6, Node 20.20.2 and npm 10.8.2. See [the verification record](docs/implementation-status.md) for exact versions, outcomes and environment workarounds.
+This is a prototype for demonstrating the revalidation mechanism. It is not a production system and claims no benchmark results.
 
-From the repository root:
+## Screenshots
 
-```sh
-docker compose -f infra/compose.yaml up -d --wait
-cd services/backend
-cp .env.example .env
-uv sync --locked
-uv run alembic upgrade head
-uv run uvicorn aftermath.api.main:create_app --factory --reload --host 127.0.0.1 --port 8000
+![Homepage](docs/screenshots/home-desktop.jpg)
+
+![Live workspace overview](docs/screenshots/overview-desktop.jpg)
+
+![Inspecting what a document update changed](docs/screenshots/inspection-desktop.jpg)
+
+## Architecture
+
+The browser talks to the Next.js app in `apps/web`. That app proxies storage and answer requests to the FastAPI service in `services/backend`.
+
+HTTP routes call application use cases. Use cases depend on core and on ports. Adapters implement those ports. Core holds retrieval, answer and citation checks, change detection, and review. The Gemini adapter produces grounded answers. When Gemini is unavailable, or when the demo fallback is forced, `core/demo_fallback` builds the answer from retrieved passages of the demo documents `plans` and `plans-v2`.
+
+PostgreSQL, with the pgvector extension installed, stores workspaces, corpora, documents, passage versions, snapshots, and change records. Alembic migrations in `services/backend/migrations` manage that schema. Archived answers and reassessments are append-only JSON files written by the archive adapter.
+
+```mermaid
+flowchart TB
+  browser[Browser]
+  web["Next.js app<br/>apps/web"]
+  browser --> web
+
+  subgraph backend ["services/backend"]
+    direction TB
+    api["api<br/>HTTP routes"]
+    application["application<br/>use cases"]
+    core["core<br/>retrieval, answers, citations,<br/>change detection, review"]
+    ports["ports<br/>interfaces"]
+    adapters["adapters<br/>persistence, storage,<br/>providers, archive"]
+    fallback["core/demo_fallback<br/>passage-built answers"]
+    api --> application
+    application --> core
+    application --> ports
+    adapters -.->|implements| ports
+    application -->|"Gemini unavailable<br/>or fallback forced"| fallback
+  end
+
+  web -->|proxies requests| api
+  db["PostgreSQL + pgvector<br/>corpora, documents, passages,<br/>snapshots, change records"]
+  gemini["Gemini provider<br/>adapters/providers"]
+  archive["Answer archive<br/>append-only JSON"]
+  adapters --> db
+  adapters --> gemini
+  adapters --> archive
 ```
 
-In a second terminal:
+## Tech stack
 
-```sh
-cd apps/web
-cp .env.example .env.local
-npm ci
-npm run dev
+| Part | Choice |
+| --- | --- |
+| Frontend | Next.js 16 + React 19 (TypeScript) |
+| Backend | FastAPI (Python 3.13) |
+| Database | PostgreSQL + pgvector |
+| Migrations | Alembic |
+| LLM | Google Gemini (with deterministic fallback) |
+| Package managers | npm and uv |
+
+## Repository structure
+
+```text
+.
+├── apps/web/                 Next.js frontend
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   ├── tests/
+│   └── scripts/
+├── services/backend/         FastAPI service
+│   ├── src/aftermath/
+│   │   ├── api/
+│   │   ├── application/
+│   │   ├── core/
+│   │   ├── adapters/
+│   │   ├── ports/
+│   │   ├── experiments/
+│   │   ├── worker/
+│   │   └── config.py
+│   ├── migrations/
+│   └── tests/
+├── infra/                    Docker Compose for Postgres with pgvector, on 127.0.0.1:54329
+└── docs/                     architecture notes, demo runbook, screenshots
 ```
-
-Open http://localhost:3000. “Check again” requests actual readiness via the Next.js server. Liveness is http://127.0.0.1:8000/health/live; readiness is http://127.0.0.1:8000/health/ready. Readiness returns HTTP 503 when the database, vector extension, or foundation migration is unavailable.
-
-Worker and CLI, from `services/backend`:
-
-```sh
-uv run aftermath-worker --check
-uv run aftermath-worker
-# Stop with Ctrl+C; it stays idle and executes no jobs.
-uv run aftermath-experiment --help
-uv run aftermath-experiment --validate-config
-```
-
-## Checks
-
-From `services/backend`:
-
-```sh
-uv run ruff check src tests migrations
-uv run ruff format --check src tests migrations
-uv run mypy src
-AFTERMATH_TEST_DATABASE_URL=postgresql+psycopg://aftermath:local-only@localhost:54329/aftermath uv run pytest -q
-```
-
-Without `AFTERMATH_TEST_DATABASE_URL`, two integration tests skip; that is not full verification. Run migrations before integration tests. Tests exercise actual PostgreSQL vector operations and roll back their inserted records.
-
-From `apps/web`:
-
-```sh
-npm test
-npm run typecheck
-npm run build
-npm run start
-```
-
-The documented setup is the normal editable development path. On this macOS host, an inherited hidden flag on the editable `.pth` file made Python ignore it. The verified workaround is `uv sync --locked --no-editable --reinstall-package aftermath`, followed by commands through `.venv/bin/` (or `uv run --no-editable`). Reinstall the package after source edits in this mode. Do not add another project's path to `PYTHONPATH`.
-
-Stop local infrastructure without deleting its volume:
-
-```sh
-docker compose -f infra/compose.yaml stop
-```
-
-## Review map
-
-- [Architecture and security boundaries](docs/architecture.md)
-- [Explicit research/deployment adaptations](docs/architecture-decisions.md)
-- [Implemented, verified and deferred work](docs/implementation-status.md)
-- [Environment configuration](docs/environment.md)
-- [Engineering rules](AGENTS.md)
-
-The two supplied research Markdown files and spec archive are preserved. No README or AGENTS.md existed initially. No Git repository or commit was created; lockfiles are supplied for version control. CI is configured but has not run on a hosted runner.
