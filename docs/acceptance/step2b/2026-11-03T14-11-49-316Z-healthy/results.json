@@ -1,0 +1,23 @@
+{
+  "state": "healthy",
+  "web": "http://127.0.0.1:3001",
+  "started_at": "2026-11-03T14:11:49.320Z",
+  "browser": "chromium 156.0.8078.4",
+  "checks": [
+    {
+      "name": "harness completed without an exception",
+      "passed": false,
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3001/workspace\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3001/workspace\", waiting until \"networkidle\"\u001b[22m\n\n    at /Users/ananyasrivastava/Documents/projects/aftermath/apps/web/scripts/step2b-acceptance.mjs:119:16"
+    },
+    {
+      "name": "no unexpected browser console or page errors",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "notes": [],
+  "measurements": {},
+  "screenshots": [],
+  "console": [],
+  "finished_at": "2026-11-03T14:11:50.328Z"
+}

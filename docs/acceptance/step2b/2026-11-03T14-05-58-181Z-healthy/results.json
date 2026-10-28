@@ -1,0 +1,76 @@
+{
+  "state": "healthy",
+  "web": "http://127.0.0.1:3001",
+  "started_at": "2026-11-03T14:05:58.182Z",
+  "browser": "chromium 156.0.8078.4",
+  "checks": [
+    {
+      "name": "connectivity reports API + PostgreSQL ready",
+      "passed": false,
+      "status": 503,
+      "body": {
+        "status": "unreachable"
+      }
+    },
+    {
+      "name": "harness completed without an exception",
+      "passed": false,
+      "error": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('API connected · PostgreSQL ready') to be visible\u001b[22m\n\n    at /Users/ananyasrivastava/Documents/projects/aftermath/apps/web/scripts/step2b-acceptance.mjs:123:62"
+    },
+    {
+      "name": "no unexpected browser console or page errors",
+      "passed": false,
+      "errors": [
+        {
+          "label": "healthy-main",
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+          "expected": false
+        },
+        {
+          "label": "healthy-main",
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+          "expected": false
+        },
+        {
+          "label": "healthy-main",
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+          "expected": false
+        }
+      ]
+    }
+  ],
+  "notes": [],
+  "measurements": {
+    "connectivity": {
+      "status": 503,
+      "body": {
+        "status": "unreachable"
+      }
+    }
+  },
+  "screenshots": [],
+  "console": [
+    {
+      "label": "healthy-main",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": false
+    },
+    {
+      "label": "healthy-main",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": false
+    },
+    {
+      "label": "healthy-main",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": false
+    }
+  ],
+  "finished_at": "2026-11-03T14:06:10.337Z"
+}

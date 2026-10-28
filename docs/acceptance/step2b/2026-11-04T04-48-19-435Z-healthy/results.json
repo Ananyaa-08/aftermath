@@ -1,0 +1,2823 @@
+{
+  "state": "healthy",
+  "web": "http://127.0.0.1:3001",
+  "started_at": "2026-11-04T04:48:19.439Z",
+  "browser": "chromium 156.0.8078.4",
+  "checks": [
+    {
+      "name": "connectivity reports API + PostgreSQL ready",
+      "passed": true,
+      "status": 200,
+      "body": {
+        "status": "ready"
+      }
+    },
+    {
+      "name": "r1→r5 deliveries applied through the same-origin proxy",
+      "passed": true,
+      "deliveries": [
+        {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r1",
+          "http": 200,
+          "status": "APPLIED",
+          "snapshot_id": "snap:000001",
+          "duplicate": false,
+          "error_code": null
+        },
+        {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r2",
+          "http": 200,
+          "status": "APPLIED",
+          "snapshot_id": "snap:000002",
+          "duplicate": false,
+          "error_code": null
+        },
+        {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r3",
+          "http": 200,
+          "status": "APPLIED",
+          "snapshot_id": "snap:000003",
+          "duplicate": false,
+          "error_code": null
+        },
+        {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r4",
+          "http": 200,
+          "status": "APPLIED",
+          "snapshot_id": "snap:000004",
+          "duplicate": false,
+          "error_code": null
+        },
+        {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r5",
+          "http": 200,
+          "status": "APPLIED",
+          "snapshot_id": "snap:000005",
+          "duplicate": false,
+          "error_code": null
+        }
+      ]
+    },
+    {
+      "name": "replaying the identical r3 delivery is idempotent",
+      "passed": true,
+      "status": 200,
+      "body": {
+        "delivery_id": "acc-2026-11-04t04-48-19-435z-r3",
+        "status": "APPLIED",
+        "snapshot_id": "snap:000003",
+        "duplicate": true,
+        "error_code": null
+      }
+    },
+    {
+      "name": "old snapshots remain independently resolvable after r5",
+      "passed": true,
+      "r1": {
+        "status": 200,
+        "body": {
+          "snapshot_id": "snap:000001",
+          "scope": "ROLLING_CURRENT",
+          "evaluation_time": "2027-02-01T00:00:00.000Z",
+          "selected_version_id": "dv:pricing@r1",
+          "active": true,
+          "version": {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r1",
+            "source_revision_id": "r1",
+            "source_seq": 1,
+            "text": "Starter costs 12 USD.",
+            "content_hash": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+            "source_bytes_hash": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+            "object_key": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+            "normalization_version": "canon-v1",
+            "source_timestamp": "2026-01-15T00:00:00.000Z",
+            "declared_effective_from": "2026-01-01T00:00:00.000Z",
+            "effective_from": "2026-01-01T00:00:00.000Z",
+            "effective_from_source": "DECLARED_METADATA",
+            "source_type": "product_doc",
+            "authority": {},
+            "is_deletion": false,
+            "created_at": "2026-11-04T04:48:21.901Z",
+            "known_at_seq": 1,
+            "immutable_hash": "sha256:e3607909abf0cee4838c2f58745422651a30d88293b2af15ea99ce0d0d75a99b"
+          },
+          "effective_to": null,
+          "fingerprint": "sha256:c34a44e9c3a1a5ae1b25cb80975c40dbb6561f81d4e17be5d7bc224cf5053dd2"
+        }
+      },
+      "r2": {
+        "status": 200,
+        "body": {
+          "snapshot_id": "snap:000002",
+          "scope": "ROLLING_CURRENT",
+          "evaluation_time": "2027-02-01T00:00:00.000Z",
+          "selected_version_id": "dv:pricing@r2",
+          "active": true,
+          "version": {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r2",
+            "source_revision_id": "r2",
+            "source_seq": 2,
+            "text": "Starter costs 15 USD.",
+            "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "source_bytes_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "object_key": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "normalization_version": "canon-v1",
+            "source_timestamp": "2026-02-15T00:00:00.000Z",
+            "declared_effective_from": "2026-12-01T00:00:00.000Z",
+            "effective_from": "2026-12-01T00:00:00.000Z",
+            "effective_from_source": "DECLARED_METADATA",
+            "source_type": "product_doc",
+            "authority": {},
+            "is_deletion": false,
+            "created_at": "2026-11-04T04:48:22.004Z",
+            "known_at_seq": 2,
+            "immutable_hash": "sha256:bd87fa24bd026a66050391c4d630a4a25679b2f0bb3ed9fd8528f3c3c00a568e"
+          },
+          "effective_to": null,
+          "fingerprint": "sha256:0e833e48d68a5f8724b9e86d236ed3b76ac972d7cda4a2cc5a292aa772d16e57"
+        }
+      },
+      "r3": {
+        "status": 200,
+        "body": {
+          "snapshot_id": "snap:000003",
+          "scope": "ROLLING_CURRENT",
+          "evaluation_time": "2026-05-01T00:00:00.000Z",
+          "selected_version_id": "dv:pricing@r3",
+          "active": true,
+          "version": {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r3",
+            "source_revision_id": "r3",
+            "source_seq": 3,
+            "text": "Starter costs 15 USD.",
+            "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "source_bytes_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "object_key": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "normalization_version": "canon-v1",
+            "source_timestamp": "2026-03-15T00:00:00.000Z",
+            "declared_effective_from": "2026-04-01T00:00:00.000Z",
+            "effective_from": "2026-04-01T00:00:00.000Z",
+            "effective_from_source": "DECLARED_METADATA",
+            "source_type": "product_doc",
+            "authority": {},
+            "is_deletion": false,
+            "created_at": "2026-11-04T04:48:22.051Z",
+            "known_at_seq": 3,
+            "immutable_hash": "sha256:87ff4847c50083d96a41fd8809ca5f6f46f0bf0007e5c931ef603e13ed47f144"
+          },
+          "effective_to": "2026-12-01T00:00:00.000Z",
+          "fingerprint": "sha256:0a4922cf76dc2445a1dc2b1fab75a2ad13cae687d257db95f589f97b7f571960"
+        }
+      }
+    },
+    {
+      "name": "API r2: exact 12→15 span at code points [14,16) on both sides",
+      "passed": true,
+      "span": {
+        "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+        "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+        "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r2",
+        "document_id": "pricing",
+        "change_span_id": "cs:acc-2026-11-04t04-48-19-435z-r2:0001",
+        "span_ordinal": 1,
+        "old_document_version_id": "dv:pricing@r1",
+        "new_document_version_id": "dv:pricing@r2",
+        "old_passage_version_id": "pv:pricing@r1#p0001",
+        "new_passage_version_id": "pv:pricing@r2#p0001",
+        "kind": "MODIFIED",
+        "lineage_edge_id": "le:acc-2026-11-04t04-48-19-435z-r2:0001",
+        "timeline_alignment_edge_id": null,
+        "reclassified_lineage_edge_id": null,
+        "old_start": 14,
+        "old_end": 16,
+        "new_start": 14,
+        "new_end": 16,
+        "old_text": "12",
+        "new_text": "15",
+        "features": {
+          "numeric_change": true,
+          "numbers_old": [
+            "12"
+          ],
+          "numbers_new": [
+            "15"
+          ],
+          "date_change": false,
+          "dates_old": [],
+          "dates_new": [],
+          "negation_change": false,
+          "qualifiers_old": [],
+          "qualifiers_new": [],
+          "qualifier_change": false
+        },
+        "alignment_confidence": "HIGH",
+        "effective_from": "2026-12-01T00:00:00.000Z",
+        "effective_to": null,
+        "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r2:0001",
+        "text_diff_reused": true,
+        "feature_version": "features-v1",
+        "origin": "LATEST_OBSERVED",
+        "metadata": {
+          "opcode": "replace",
+          "feature_evidence": {
+            "new": {
+              "span_end": 16,
+              "span_start": 14,
+              "context_end": 21,
+              "context_text": "Starter costs 15 USD.",
+              "context_start": 0,
+              "context_passage": "pv:pricing@r2#p0001",
+              "opcode_boundary": null,
+              "boundary_affinity": null
+            },
+            "old": {
+              "span_end": 16,
+              "span_start": 14,
+              "context_end": 21,
+              "context_text": "Starter costs 12 USD.",
+              "context_start": 0,
+              "context_passage": "pv:pricing@r1#p0001",
+              "opcode_boundary": null,
+              "boundary_affinity": null
+            },
+            "local": {
+              "dates_new": [],
+              "dates_old": [],
+              "date_change": false,
+              "numbers_new": [
+                "15"
+              ],
+              "numbers_old": [
+                "12"
+              ],
+              "numeric_change": true,
+              "qualifiers_new": [],
+              "qualifiers_old": [],
+              "negation_change": false,
+              "qualifier_change": false
+            },
+            "boundary": "sentences-v1; empty opcode uses corresponding neighbor affinity",
+            "selection": "smallest containing sentence within each passage",
+            "implementation": "features-v1-symmetric-context-2026-11-04",
+            "containing_sentence": {
+              "dates_new": [],
+              "dates_old": [],
+              "date_change": false,
+              "numbers_new": [
+                "15"
+              ],
+              "numbers_old": [
+                "12"
+              ],
+              "numeric_change": true,
+              "qualifiers_new": [],
+              "qualifiers_old": [],
+              "negation_change": false,
+              "qualifier_change": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "API r3 (AS-24): exactly one lineage edge, IDENTICAL r2→r3",
+      "passed": true,
+      "edges": [
+        {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "document_id": "pricing",
+          "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r3",
+          "lineage_edge_id": "le:acc-2026-11-04t04-48-19-435z-r3:0001",
+          "edge_ordinal": 1,
+          "from_passage_version_ids": [
+            "pv:pricing@r2#p0001"
+          ],
+          "to_passage_version_ids": [
+            "pv:pricing@r3#p0001"
+          ],
+          "relation": "IDENTICAL",
+          "alignment_score": 1,
+          "alignment_confidence": "HIGH",
+          "alignment_method": "diff-v1/dice-v1",
+          "reason": {}
+        }
+      ]
+    },
+    {
+      "name": "API r3: one timeline-v1 comparison r1→r3, outside lineage",
+      "passed": true,
+      "timeline_alignments": [
+        {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "document_id": "pricing",
+          "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r3",
+          "timeline_alignment_edge_id": "ta:acc-2026-11-04t04-48-19-435z-r3:0001",
+          "alignment_ordinal": 1,
+          "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r3:0001",
+          "old_document_version_id": "dv:pricing@r1",
+          "new_document_version_id": "dv:pricing@r3",
+          "from_passage_version_ids": [
+            "pv:pricing@r1#p0001"
+          ],
+          "to_passage_version_ids": [
+            "pv:pricing@r3#p0001"
+          ],
+          "relation": "MODIFIED",
+          "alignment_score": 0.75,
+          "alignment_confidence": "HIGH",
+          "alignment_method": "diff-v1/dice-v1",
+          "reason": {
+            "runner_up": 0
+          },
+          "recorded_by": "timeline-v1",
+          "legacy_lineage_edge_id": null
+        }
+      ]
+    },
+    {
+      "name": "API r3: timeline span 12→15 has no lineage edge and names its timeline alignment",
+      "passed": true,
+      "span": {
+        "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+        "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+        "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r3",
+        "document_id": "pricing",
+        "change_span_id": "cs:acc-2026-11-04t04-48-19-435z-r3:0001",
+        "span_ordinal": 1,
+        "old_document_version_id": "dv:pricing@r1",
+        "new_document_version_id": "dv:pricing@r3",
+        "old_passage_version_id": "pv:pricing@r1#p0001",
+        "new_passage_version_id": "pv:pricing@r3#p0001",
+        "kind": "MODIFIED",
+        "lineage_edge_id": null,
+        "timeline_alignment_edge_id": "ta:acc-2026-11-04t04-48-19-435z-r3:0001",
+        "reclassified_lineage_edge_id": null,
+        "old_start": 14,
+        "old_end": 16,
+        "new_start": 14,
+        "new_end": 16,
+        "old_text": "12",
+        "new_text": "15",
+        "features": {
+          "numeric_change": true,
+          "numbers_old": [
+            "12"
+          ],
+          "numbers_new": [
+            "15"
+          ],
+          "date_change": false,
+          "dates_old": [],
+          "dates_new": [],
+          "negation_change": false,
+          "qualifiers_old": [],
+          "qualifiers_new": [],
+          "qualifier_change": false
+        },
+        "alignment_confidence": "HIGH",
+        "effective_from": "2026-04-01T00:00:00.000Z",
+        "effective_to": "2026-12-01T00:00:00.000Z",
+        "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r3:0001",
+        "text_diff_reused": false,
+        "feature_version": "features-v1",
+        "origin": "TIMELINE",
+        "metadata": {
+          "opcode": "replace",
+          "feature_evidence": {
+            "new": {
+              "span_end": 16,
+              "span_start": 14,
+              "context_end": 21,
+              "context_text": "Starter costs 15 USD.",
+              "context_start": 0,
+              "context_passage": "pv:pricing@r3#p0001",
+              "opcode_boundary": null,
+              "boundary_affinity": null
+            },
+            "old": {
+              "span_end": 16,
+              "span_start": 14,
+              "context_end": 21,
+              "context_text": "Starter costs 12 USD.",
+              "context_start": 0,
+              "context_passage": "pv:pricing@r1#p0001",
+              "opcode_boundary": null,
+              "boundary_affinity": null
+            },
+            "local": {
+              "dates_new": [],
+              "dates_old": [],
+              "date_change": false,
+              "numbers_new": [
+                "15"
+              ],
+              "numbers_old": [
+                "12"
+              ],
+              "numeric_change": true,
+              "qualifiers_new": [],
+              "qualifiers_old": [],
+              "negation_change": false,
+              "qualifier_change": false
+            },
+            "boundary": "sentences-v1; empty opcode uses corresponding neighbor affinity",
+            "selection": "smallest containing sentence within each passage",
+            "implementation": "features-v1-symmetric-context-2026-11-04",
+            "containing_sentence": {
+              "dates_new": [],
+              "dates_old": [],
+              "date_change": false,
+              "numbers_new": [
+                "15"
+              ],
+              "numbers_old": [
+                "12"
+              ],
+              "numeric_change": true,
+              "qualifiers_new": [],
+              "qualifiers_old": [],
+              "negation_change": false,
+              "qualifier_change": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "API r4: legal_notice authority-only change has no text side or invented timeline comparison",
+      "passed": true
+    },
+    {
+      "name": "API r5: latest observed r4, effective predecessor r2, interval 2027-01-01→open",
+      "passed": true,
+      "applicability": [
+        {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r5",
+          "document_id": "pricing",
+          "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r5:0001",
+          "change_ordinal": 1,
+          "parent_snapshot_id": "snap:000004",
+          "result_snapshot_id": "snap:000005",
+          "interval_from": "2027-01-01T00:00:00.000Z",
+          "interval_to": null,
+          "old_effective_version_id": "dv:pricing@r2",
+          "new_effective_version_id": null,
+          "old_effective_fingerprint": "sha256:de210a28dc784bc128d9d1f8644925c6d4c2ded8b82192d2167d79f7917b4cb3",
+          "new_effective_fingerprint": "sha256:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "reason": "DELETION",
+          "text_diff_reused": false,
+          "timeline_version": "timeline-v1"
+        }
+      ]
+    },
+    {
+      "name": "UI r1: DOCUMENT_ADDED and ADDITION interval from 2026-01-01",
+      "passed": true
+    },
+    {
+      "name": "UI r2: struck 12 and inserted 15 at 14–16",
+      "passed": true,
+      "span": {
+        "kind": "MODIFIED",
+        "header": "LATEST_OBSERVED / HIGH ALIGNMENT",
+        "before": "Before14–1612",
+        "after": "After14–1615"
+      }
+    },
+    {
+      "name": "UI r3: lineage section shows only IDENTICAL",
+      "passed": true,
+      "lineage": [
+        "IDENTICAL"
+      ]
+    },
+    {
+      "name": "UI r3: 'Timeline comparison · not lineage' lists MODIFIED r1→r3",
+      "passed": true,
+      "timeline": [
+        "ta:acc-2026-11-04t04-48-19-435z-r3:0001MODIFIEDHIGH comparison confidence / 0.75pv:pricing@r1#p0001 → pv:pricing@r3#p0001 / ac:acc-2026-11-04t04-48-19-435z-r3:0001"
+      ]
+    },
+    {
+      "name": "UI r3: TIMELINE span 12→15 and April→December interval r1→r3",
+      "passed": true,
+      "applicability": [
+        "CONTENT2026-04-01T00:00:00.000Z → 2026-12-01T00:00:00.000Zdv:pricing@r1 → dv:pricing@r3Timeline-specific comparison / snap:000002 → snap:000003"
+      ]
+    },
+    {
+      "name": "UI r4: AUTHORITY_CHANGED shows no textual side and no timeline section",
+      "passed": true
+    },
+    {
+      "name": "UI r5: DOCUMENT_DELETED, before = r4, DELETION from r2 to Absent",
+      "passed": true,
+      "before": "dv:pricing@r4",
+      "applicability": [
+        "DELETION2027-01-01T00:00:00.000Z → opendv:pricing@r2 → AbsentTimeline-specific comparison / snap:000004 → snap:000005"
+      ]
+    },
+    {
+      "name": "UI: no inspection page shows an error alert",
+      "passed": true
+    },
+    {
+      "name": "injected r2 comparison failure shows a NOT_FOUND alert and no stale r3 data",
+      "passed": true,
+      "alert": "CHANGE RECORDS UNAVAILABLENOT_FOUND · Injected missing comparison for acceptanceNo example changes were substituted."
+    },
+    {
+      "name": "selecting r3 after the failure renders r3 with no stale alert",
+      "passed": true
+    },
+    {
+      "name": "Retry after a failure renders the current selection (r2) and clears the alert",
+      "passed": true
+    },
+    {
+      "name": "Retry on a deep-linked page keeps the user's current r2 selection",
+      "passed": true
+    },
+    {
+      "name": "slow superseded r2 response never replaces the newer r3 selection",
+      "passed": true
+    },
+    {
+      "name": "home @1280: requested, inner and client widths are exactly 1280",
+      "passed": true,
+      "requestedWidth": 1280,
+      "innerWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "name": "home @1280: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280
+    },
+    {
+      "name": "home @1280: wordmark fully inside the viewport",
+      "passed": true,
+      "wordmark": {
+        "left": 47.59375,
+        "top": 126.65869140625,
+        "right": 1226.25,
+        "bottom": 358.26806640625
+      }
+    },
+    {
+      "name": "workspace @1280: requested, inner and client widths are exactly 1280",
+      "passed": true,
+      "requestedWidth": 1280,
+      "innerWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "name": "workspace @1280: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280
+    },
+    {
+      "name": "inspect-r3 @1280: requested, inner and client widths are exactly 1280",
+      "passed": true,
+      "requestedWidth": 1280,
+      "innerWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "name": "inspect-r3 @1280: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280
+    },
+    {
+      "name": "home @760: requested, inner and client widths are exactly 760",
+      "passed": true,
+      "requestedWidth": 760,
+      "innerWidth": 760,
+      "clientWidth": 760
+    },
+    {
+      "name": "home @760: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 760,
+      "bodyScrollWidth": 760
+    },
+    {
+      "name": "home @760: wordmark fully inside the viewport",
+      "passed": true,
+      "wordmark": {
+        "left": 28.25,
+        "top": 125.40626525878906,
+        "right": 728.09375,
+        "bottom": 262.921875
+      }
+    },
+    {
+      "name": "workspace @760: requested, inner and client widths are exactly 760",
+      "passed": true,
+      "requestedWidth": 760,
+      "innerWidth": 760,
+      "clientWidth": 760
+    },
+    {
+      "name": "workspace @760: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 760,
+      "bodyScrollWidth": 760
+    },
+    {
+      "name": "workspace @760: decoration does not overlap the title",
+      "passed": true,
+      "overlap": 0
+    },
+    {
+      "name": "inspect-r3 @760: requested, inner and client widths are exactly 760",
+      "passed": true,
+      "requestedWidth": 760,
+      "innerWidth": 760,
+      "clientWidth": 760
+    },
+    {
+      "name": "inspect-r3 @760: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 760,
+      "bodyScrollWidth": 760
+    },
+    {
+      "name": "inspect-r3 @760: decoration does not overlap the title",
+      "passed": true,
+      "overlap": 0
+    },
+    {
+      "name": "home @390: requested, inner and client widths are exactly 390",
+      "passed": true,
+      "requestedWidth": 390,
+      "innerWidth": 390,
+      "clientWidth": 390
+    },
+    {
+      "name": "home @390: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390
+    },
+    {
+      "name": "home @390: wordmark fully inside the viewport",
+      "passed": true,
+      "wordmark": {
+        "left": 17.640625,
+        "top": 107.90650177001953,
+        "right": 370.5,
+        "bottom": 182.390869140625
+      }
+    },
+    {
+      "name": "workspace @390: requested, inner and client widths are exactly 390",
+      "passed": true,
+      "requestedWidth": 390,
+      "innerWidth": 390,
+      "clientWidth": 390
+    },
+    {
+      "name": "workspace @390: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390
+    },
+    {
+      "name": "workspace @390: decoration does not overlap the title",
+      "passed": true,
+      "overlap": 0
+    },
+    {
+      "name": "inspect-r3 @390: requested, inner and client widths are exactly 390",
+      "passed": true,
+      "requestedWidth": 390,
+      "innerWidth": 390,
+      "clientWidth": 390
+    },
+    {
+      "name": "inspect-r3 @390: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390
+    },
+    {
+      "name": "inspect-r3 @390: decoration does not overlap the title",
+      "passed": true,
+      "overlap": 0
+    },
+    {
+      "name": "home @320: requested, inner and client widths are exactly 320",
+      "passed": true,
+      "requestedWidth": 320,
+      "innerWidth": 320,
+      "clientWidth": 320
+    },
+    {
+      "name": "home @320: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 320,
+      "bodyScrollWidth": 320
+    },
+    {
+      "name": "home @320: wordmark fully inside the viewport",
+      "passed": true,
+      "wordmark": {
+        "left": 14.484375,
+        "top": 107.90570831298828,
+        "right": 304,
+        "bottom": 169.03070068359375
+      }
+    },
+    {
+      "name": "workspace @320: requested, inner and client widths are exactly 320",
+      "passed": true,
+      "requestedWidth": 320,
+      "innerWidth": 320,
+      "clientWidth": 320
+    },
+    {
+      "name": "workspace @320: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 320,
+      "bodyScrollWidth": 320
+    },
+    {
+      "name": "workspace @320: decoration does not overlap the title",
+      "passed": true,
+      "overlap": 0
+    },
+    {
+      "name": "inspect-r3 @320: requested, inner and client widths are exactly 320",
+      "passed": true,
+      "requestedWidth": 320,
+      "innerWidth": 320,
+      "clientWidth": 320
+    },
+    {
+      "name": "inspect-r3 @320: no horizontal document overflow",
+      "passed": true,
+      "scrollWidth": 320,
+      "bodyScrollWidth": 320
+    },
+    {
+      "name": "inspect-r3 @320: decoration does not overlap the title",
+      "passed": true,
+      "overlap": 0
+    },
+    {
+      "name": "reduced motion disables animation and smooth scrolling",
+      "passed": true,
+      "matches": true,
+      "animation": "none",
+      "scrollBehavior": "auto"
+    },
+    {
+      "name": "first Tab reaches the skip link",
+      "passed": true,
+      "first": {
+        "tag": "A",
+        "label": "Skip to workspace content",
+        "visible": true
+      }
+    },
+    {
+      "name": "every focused control on the workspace shows a visible focus outline",
+      "passed": true,
+      "sequence": [
+        {
+          "tag": "A",
+          "label": "Skip to workspace content",
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "label": "AFTERMATH homepage",
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Live workspace",
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Example workspace ↗",
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "label": "01Overview↗",
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "label": "02Inspect changes↗",
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "label": "03Experiments↗",
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Check again ↗",
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Refresh storage ↻",
+          "visible": true
+        },
+        {
+          "tag": "SELECT",
+          "label": "Workspace",
+          "visible": true
+        },
+        {
+          "tag": "SUMMARY",
+          "label": "Create a workspace or corpus",
+          "visible": true
+        },
+        {
+          "tag": "BODY",
+          "label": "Skip to workspace content←✳ AFTERMATH / A RESEARCH",
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "label": "Skip to workspace content",
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "label": "AFTERMATH homepage",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "Inspect changes is reachable by keyboard",
+      "passed": true
+    },
+    {
+      "name": "Enter on the focused nav button opens Inspect changes",
+      "passed": true
+    },
+    {
+      "name": "Workspace selector reachable by keyboard with visible focus",
+      "passed": true
+    },
+    {
+      "name": "Corpus selector reachable by keyboard with visible focus",
+      "passed": true
+    },
+    {
+      "name": "Applied update selector reachable by keyboard with visible focus",
+      "passed": true
+    },
+    {
+      "name": "Changed document selector reachable by keyboard with visible focus",
+      "passed": true
+    },
+    {
+      "name": "Retry control reachable by keyboard with visible focus",
+      "passed": true
+    },
+    {
+      "name": "no unexpected browser console or page errors",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "notes": [
+    {
+      "name": "workspace @1280: desktop composition overlap (px², bounding boxes) for visual review",
+      "overlap": 41298.01904723048
+    },
+    {
+      "name": "inspect-r3 @1280: desktop composition overlap (px², bounding boxes) for visual review",
+      "overlap": 0
+    }
+  ],
+  "measurements": {
+    "connectivity": {
+      "status": 200,
+      "body": {
+        "status": "ready"
+      }
+    },
+    "seeded": {
+      "workspace": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+      "corpus": "acceptance-2026-11-04t04-48-19-435z",
+      "deliveries": [
+        {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r1",
+          "http": 200,
+          "status": "APPLIED",
+          "snapshot_id": "snap:000001",
+          "duplicate": false,
+          "error_code": null
+        },
+        {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r2",
+          "http": 200,
+          "status": "APPLIED",
+          "snapshot_id": "snap:000002",
+          "duplicate": false,
+          "error_code": null
+        },
+        {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r3",
+          "http": 200,
+          "status": "APPLIED",
+          "snapshot_id": "snap:000003",
+          "duplicate": false,
+          "error_code": null
+        },
+        {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r4",
+          "http": 200,
+          "status": "APPLIED",
+          "snapshot_id": "snap:000004",
+          "duplicate": false,
+          "error_code": null
+        },
+        {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r5",
+          "http": 200,
+          "status": "APPLIED",
+          "snapshot_id": "snap:000005",
+          "duplicate": false,
+          "error_code": null
+        }
+      ],
+      "delivery_ids": {
+        "r1": "acc-2026-11-04t04-48-19-435z-r1",
+        "r2": "acc-2026-11-04t04-48-19-435z-r2",
+        "r3": "acc-2026-11-04t04-48-19-435z-r3",
+        "r4": "acc-2026-11-04t04-48-19-435z-r4",
+        "r5": "acc-2026-11-04t04-48-19-435z-r5"
+      },
+      "payloads": {
+        "r1": {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r1",
+          "expected_head": null,
+          "as_of": "2026-11-02T00:00:00Z",
+          "documents": [
+            {
+              "document_id": "pricing",
+              "source_revision_id": "r1",
+              "source_seq": 1,
+              "source_timestamp": "2026-01-15T00:00:00Z",
+              "declared_effective_from": "2026-01-01T00:00:00Z",
+              "source_type": "product_doc",
+              "authority": {},
+              "source_base64": "U3RhcnRlciBjb3N0cyAxMiBVU0Qu",
+              "deleted": false
+            }
+          ]
+        },
+        "r2": {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r2",
+          "expected_head": "snap:000001",
+          "as_of": "2026-11-02T00:00:00Z",
+          "documents": [
+            {
+              "document_id": "pricing",
+              "source_revision_id": "r2",
+              "source_seq": 2,
+              "source_timestamp": "2026-02-15T00:00:00Z",
+              "declared_effective_from": "2026-12-01T00:00:00Z",
+              "source_type": "product_doc",
+              "authority": {},
+              "source_base64": "U3RhcnRlciBjb3N0cyAxNSBVU0Qu",
+              "deleted": false
+            }
+          ]
+        },
+        "r3": {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r3",
+          "expected_head": "snap:000002",
+          "as_of": "2026-11-02T00:00:00Z",
+          "documents": [
+            {
+              "document_id": "pricing",
+              "source_revision_id": "r3",
+              "source_seq": 3,
+              "source_timestamp": "2026-03-15T00:00:00Z",
+              "declared_effective_from": "2026-04-01T00:00:00Z",
+              "source_type": "product_doc",
+              "authority": {},
+              "source_base64": "U3RhcnRlciBjb3N0cyAxNSBVU0Qu",
+              "deleted": false
+            }
+          ]
+        },
+        "r4": {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r4",
+          "expected_head": "snap:000003",
+          "as_of": "2026-11-02T00:00:00Z",
+          "documents": [
+            {
+              "document_id": "pricing",
+              "source_revision_id": "r4",
+              "source_seq": 4,
+              "source_timestamp": "2026-04-15T00:00:00Z",
+              "declared_effective_from": "2026-04-01T00:00:00Z",
+              "source_type": "legal_notice",
+              "authority": {},
+              "source_base64": "U3RhcnRlciBjb3N0cyAxNSBVU0Qu",
+              "deleted": false
+            }
+          ]
+        },
+        "r5": {
+          "delivery_id": "acc-2026-11-04t04-48-19-435z-r5",
+          "expected_head": "snap:000004",
+          "as_of": "2026-11-02T00:00:00Z",
+          "documents": [
+            {
+              "document_id": "pricing",
+              "source_revision_id": "r5",
+              "source_seq": 5,
+              "source_timestamp": "2026-05-15T00:00:00Z",
+              "declared_effective_from": "2027-01-01T00:00:00Z",
+              "source_type": "legal_notice",
+              "authority": {},
+              "source_base64": "",
+              "deleted": true
+            }
+          ]
+        }
+      }
+    },
+    "historical_resolution": {
+      "r1": {
+        "status": 200,
+        "body": {
+          "snapshot_id": "snap:000001",
+          "scope": "ROLLING_CURRENT",
+          "evaluation_time": "2027-02-01T00:00:00.000Z",
+          "selected_version_id": "dv:pricing@r1",
+          "active": true,
+          "version": {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r1",
+            "source_revision_id": "r1",
+            "source_seq": 1,
+            "text": "Starter costs 12 USD.",
+            "content_hash": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+            "source_bytes_hash": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+            "object_key": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+            "normalization_version": "canon-v1",
+            "source_timestamp": "2026-01-15T00:00:00.000Z",
+            "declared_effective_from": "2026-01-01T00:00:00.000Z",
+            "effective_from": "2026-01-01T00:00:00.000Z",
+            "effective_from_source": "DECLARED_METADATA",
+            "source_type": "product_doc",
+            "authority": {},
+            "is_deletion": false,
+            "created_at": "2026-11-04T04:48:21.901Z",
+            "known_at_seq": 1,
+            "immutable_hash": "sha256:e3607909abf0cee4838c2f58745422651a30d88293b2af15ea99ce0d0d75a99b"
+          },
+          "effective_to": null,
+          "fingerprint": "sha256:c34a44e9c3a1a5ae1b25cb80975c40dbb6561f81d4e17be5d7bc224cf5053dd2"
+        }
+      },
+      "r2": {
+        "status": 200,
+        "body": {
+          "snapshot_id": "snap:000002",
+          "scope": "ROLLING_CURRENT",
+          "evaluation_time": "2027-02-01T00:00:00.000Z",
+          "selected_version_id": "dv:pricing@r2",
+          "active": true,
+          "version": {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r2",
+            "source_revision_id": "r2",
+            "source_seq": 2,
+            "text": "Starter costs 15 USD.",
+            "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "source_bytes_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "object_key": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "normalization_version": "canon-v1",
+            "source_timestamp": "2026-02-15T00:00:00.000Z",
+            "declared_effective_from": "2026-12-01T00:00:00.000Z",
+            "effective_from": "2026-12-01T00:00:00.000Z",
+            "effective_from_source": "DECLARED_METADATA",
+            "source_type": "product_doc",
+            "authority": {},
+            "is_deletion": false,
+            "created_at": "2026-11-04T04:48:22.004Z",
+            "known_at_seq": 2,
+            "immutable_hash": "sha256:bd87fa24bd026a66050391c4d630a4a25679b2f0bb3ed9fd8528f3c3c00a568e"
+          },
+          "effective_to": null,
+          "fingerprint": "sha256:0e833e48d68a5f8724b9e86d236ed3b76ac972d7cda4a2cc5a292aa772d16e57"
+        }
+      },
+      "r3": {
+        "status": 200,
+        "body": {
+          "snapshot_id": "snap:000003",
+          "scope": "ROLLING_CURRENT",
+          "evaluation_time": "2026-05-01T00:00:00.000Z",
+          "selected_version_id": "dv:pricing@r3",
+          "active": true,
+          "version": {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r3",
+            "source_revision_id": "r3",
+            "source_seq": 3,
+            "text": "Starter costs 15 USD.",
+            "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "source_bytes_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "object_key": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "normalization_version": "canon-v1",
+            "source_timestamp": "2026-03-15T00:00:00.000Z",
+            "declared_effective_from": "2026-04-01T00:00:00.000Z",
+            "effective_from": "2026-04-01T00:00:00.000Z",
+            "effective_from_source": "DECLARED_METADATA",
+            "source_type": "product_doc",
+            "authority": {},
+            "is_deletion": false,
+            "created_at": "2026-11-04T04:48:22.051Z",
+            "known_at_seq": 3,
+            "immutable_hash": "sha256:87ff4847c50083d96a41fd8809ca5f6f46f0bf0007e5c931ef603e13ed47f144"
+          },
+          "effective_to": "2026-12-01T00:00:00.000Z",
+          "fingerprint": "sha256:0a4922cf76dc2445a1dc2b1fab75a2ad13cae687d257db95f589f97b7f571960"
+        }
+      }
+    },
+    "api": {
+      "r1": {
+        "delivery_id": "acc-2026-11-04t04-48-19-435z-r1",
+        "document_id": "pricing",
+        "parent_snapshot_id": null,
+        "result_snapshot_id": "snap:000001",
+        "old_version": null,
+        "new_version": {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "document_id": "pricing",
+          "document_version_id": "dv:pricing@r1",
+          "source_revision_id": "r1",
+          "source_seq": 1,
+          "text": "Starter costs 12 USD.",
+          "content_hash": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+          "source_bytes_hash": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+          "object_key": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+          "normalization_version": "canon-v1",
+          "source_timestamp": "2026-01-15T00:00:00.000Z",
+          "declared_effective_from": "2026-01-01T00:00:00.000Z",
+          "effective_from": "2026-01-01T00:00:00.000Z",
+          "effective_from_source": "DECLARED_METADATA",
+          "source_type": "product_doc",
+          "authority": {},
+          "is_deletion": false,
+          "created_at": "2026-11-04T04:48:21.901Z",
+          "known_at_seq": 1,
+          "immutable_hash": "sha256:e3607909abf0cee4838c2f58745422651a30d88293b2af15ea99ce0d0d75a99b"
+        },
+        "old_passages": [],
+        "new_passages": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r1",
+            "passage_version_id": "pv:pricing@r1#p0001",
+            "ordinal": 1,
+            "start": 0,
+            "end": 21,
+            "text": "Starter costs 12 USD.",
+            "section_path": [],
+            "content_hash": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+            "norm_hash": "sha256:6aba8b3417002ddeeb725be54aab8e4144f4ca7696135ded66c3928170617a7e",
+            "lineage_id": "lin:pricing:r1:p0001",
+            "segmentation_version": "seg-v1",
+            "norm_version": "norm-v1"
+          }
+        ],
+        "edges": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r1",
+            "lineage_edge_id": "le:acc-2026-11-04t04-48-19-435z-r1:0001",
+            "edge_ordinal": 1,
+            "from_passage_version_ids": [],
+            "to_passage_version_ids": [
+              "pv:pricing@r1#p0001"
+            ],
+            "relation": "ADDED",
+            "alignment_score": null,
+            "alignment_confidence": "HIGH",
+            "alignment_method": "diff-v1/dice-v1",
+            "reason": {}
+          }
+        ],
+        "timeline_alignments": [],
+        "spans": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r1",
+            "document_id": "pricing",
+            "change_span_id": "cs:acc-2026-11-04t04-48-19-435z-r1:0001",
+            "span_ordinal": 1,
+            "old_document_version_id": null,
+            "new_document_version_id": "dv:pricing@r1",
+            "old_passage_version_id": null,
+            "new_passage_version_id": null,
+            "kind": "DOCUMENT_ADDED",
+            "lineage_edge_id": null,
+            "timeline_alignment_edge_id": null,
+            "reclassified_lineage_edge_id": null,
+            "old_start": null,
+            "old_end": null,
+            "new_start": 0,
+            "new_end": 21,
+            "old_text": null,
+            "new_text": "Starter costs 12 USD.",
+            "features": {
+              "numeric_change": true,
+              "numbers_old": [],
+              "numbers_new": [
+                "12"
+              ],
+              "date_change": false,
+              "dates_old": [],
+              "dates_new": [],
+              "negation_change": false,
+              "qualifiers_old": [],
+              "qualifiers_new": [],
+              "qualifier_change": false
+            },
+            "alignment_confidence": "HIGH",
+            "effective_from": "2026-01-01T00:00:00.000Z",
+            "effective_to": null,
+            "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r1:0001",
+            "text_diff_reused": true,
+            "feature_version": "features-v1",
+            "origin": "LATEST_OBSERVED",
+            "metadata": {}
+          }
+        ],
+        "applicability_changes": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r1",
+            "document_id": "pricing",
+            "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r1:0001",
+            "change_ordinal": 1,
+            "parent_snapshot_id": null,
+            "result_snapshot_id": "snap:000001",
+            "interval_from": "2026-01-01T00:00:00.000Z",
+            "interval_to": null,
+            "old_effective_version_id": null,
+            "new_effective_version_id": "dv:pricing@r1",
+            "old_effective_fingerprint": "sha256:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "new_effective_fingerprint": "sha256:208382b67f8252dd879f9d74f30a9594addb610f9c07c7d7bc84c6e9cc5b8c14",
+            "reason": "ADDITION",
+            "text_diff_reused": true,
+            "timeline_version": "timeline-v1"
+          }
+        ]
+      },
+      "r2": {
+        "delivery_id": "acc-2026-11-04t04-48-19-435z-r2",
+        "document_id": "pricing",
+        "parent_snapshot_id": "snap:000001",
+        "result_snapshot_id": "snap:000002",
+        "old_version": {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "document_id": "pricing",
+          "document_version_id": "dv:pricing@r1",
+          "source_revision_id": "r1",
+          "source_seq": 1,
+          "text": "Starter costs 12 USD.",
+          "content_hash": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+          "source_bytes_hash": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+          "object_key": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+          "normalization_version": "canon-v1",
+          "source_timestamp": "2026-01-15T00:00:00.000Z",
+          "declared_effective_from": "2026-01-01T00:00:00.000Z",
+          "effective_from": "2026-01-01T00:00:00.000Z",
+          "effective_from_source": "DECLARED_METADATA",
+          "source_type": "product_doc",
+          "authority": {},
+          "is_deletion": false,
+          "created_at": "2026-11-04T04:48:21.901Z",
+          "known_at_seq": 1,
+          "immutable_hash": "sha256:e3607909abf0cee4838c2f58745422651a30d88293b2af15ea99ce0d0d75a99b"
+        },
+        "new_version": {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "document_id": "pricing",
+          "document_version_id": "dv:pricing@r2",
+          "source_revision_id": "r2",
+          "source_seq": 2,
+          "text": "Starter costs 15 USD.",
+          "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "source_bytes_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "object_key": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "normalization_version": "canon-v1",
+          "source_timestamp": "2026-02-15T00:00:00.000Z",
+          "declared_effective_from": "2026-12-01T00:00:00.000Z",
+          "effective_from": "2026-12-01T00:00:00.000Z",
+          "effective_from_source": "DECLARED_METADATA",
+          "source_type": "product_doc",
+          "authority": {},
+          "is_deletion": false,
+          "created_at": "2026-11-04T04:48:22.004Z",
+          "known_at_seq": 2,
+          "immutable_hash": "sha256:bd87fa24bd026a66050391c4d630a4a25679b2f0bb3ed9fd8528f3c3c00a568e"
+        },
+        "old_passages": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r1",
+            "passage_version_id": "pv:pricing@r1#p0001",
+            "ordinal": 1,
+            "start": 0,
+            "end": 21,
+            "text": "Starter costs 12 USD.",
+            "section_path": [],
+            "content_hash": "sha256:14a70ef018204de64fefb1a6a4e4c768a3d9f6ddec2e8f948045a97034e5a3a0",
+            "norm_hash": "sha256:6aba8b3417002ddeeb725be54aab8e4144f4ca7696135ded66c3928170617a7e",
+            "lineage_id": "lin:pricing:r1:p0001",
+            "segmentation_version": "seg-v1",
+            "norm_version": "norm-v1"
+          }
+        ],
+        "new_passages": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r2",
+            "passage_version_id": "pv:pricing@r2#p0001",
+            "ordinal": 1,
+            "start": 0,
+            "end": 21,
+            "text": "Starter costs 15 USD.",
+            "section_path": [],
+            "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "norm_hash": "sha256:f6679fbda3fbb4eed342ee7cf45c1c7165b247f566083f6fbba474577b31e39e",
+            "lineage_id": "lin:pricing:r1:p0001",
+            "segmentation_version": "seg-v1",
+            "norm_version": "norm-v1"
+          }
+        ],
+        "edges": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r2",
+            "lineage_edge_id": "le:acc-2026-11-04t04-48-19-435z-r2:0001",
+            "edge_ordinal": 1,
+            "from_passage_version_ids": [
+              "pv:pricing@r1#p0001"
+            ],
+            "to_passage_version_ids": [
+              "pv:pricing@r2#p0001"
+            ],
+            "relation": "MODIFIED",
+            "alignment_score": 0.75,
+            "alignment_confidence": "HIGH",
+            "alignment_method": "diff-v1/dice-v1",
+            "reason": {
+              "runner_up": 0
+            }
+          }
+        ],
+        "timeline_alignments": [],
+        "spans": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r2",
+            "document_id": "pricing",
+            "change_span_id": "cs:acc-2026-11-04t04-48-19-435z-r2:0001",
+            "span_ordinal": 1,
+            "old_document_version_id": "dv:pricing@r1",
+            "new_document_version_id": "dv:pricing@r2",
+            "old_passage_version_id": "pv:pricing@r1#p0001",
+            "new_passage_version_id": "pv:pricing@r2#p0001",
+            "kind": "MODIFIED",
+            "lineage_edge_id": "le:acc-2026-11-04t04-48-19-435z-r2:0001",
+            "timeline_alignment_edge_id": null,
+            "reclassified_lineage_edge_id": null,
+            "old_start": 14,
+            "old_end": 16,
+            "new_start": 14,
+            "new_end": 16,
+            "old_text": "12",
+            "new_text": "15",
+            "features": {
+              "numeric_change": true,
+              "numbers_old": [
+                "12"
+              ],
+              "numbers_new": [
+                "15"
+              ],
+              "date_change": false,
+              "dates_old": [],
+              "dates_new": [],
+              "negation_change": false,
+              "qualifiers_old": [],
+              "qualifiers_new": [],
+              "qualifier_change": false
+            },
+            "alignment_confidence": "HIGH",
+            "effective_from": "2026-12-01T00:00:00.000Z",
+            "effective_to": null,
+            "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r2:0001",
+            "text_diff_reused": true,
+            "feature_version": "features-v1",
+            "origin": "LATEST_OBSERVED",
+            "metadata": {
+              "opcode": "replace",
+              "feature_evidence": {
+                "new": {
+                  "span_end": 16,
+                  "span_start": 14,
+                  "context_end": 21,
+                  "context_text": "Starter costs 15 USD.",
+                  "context_start": 0,
+                  "context_passage": "pv:pricing@r2#p0001",
+                  "opcode_boundary": null,
+                  "boundary_affinity": null
+                },
+                "old": {
+                  "span_end": 16,
+                  "span_start": 14,
+                  "context_end": 21,
+                  "context_text": "Starter costs 12 USD.",
+                  "context_start": 0,
+                  "context_passage": "pv:pricing@r1#p0001",
+                  "opcode_boundary": null,
+                  "boundary_affinity": null
+                },
+                "local": {
+                  "dates_new": [],
+                  "dates_old": [],
+                  "date_change": false,
+                  "numbers_new": [
+                    "15"
+                  ],
+                  "numbers_old": [
+                    "12"
+                  ],
+                  "numeric_change": true,
+                  "qualifiers_new": [],
+                  "qualifiers_old": [],
+                  "negation_change": false,
+                  "qualifier_change": false
+                },
+                "boundary": "sentences-v1; empty opcode uses corresponding neighbor affinity",
+                "selection": "smallest containing sentence within each passage",
+                "implementation": "features-v1-symmetric-context-2026-11-04",
+                "containing_sentence": {
+                  "dates_new": [],
+                  "dates_old": [],
+                  "date_change": false,
+                  "numbers_new": [
+                    "15"
+                  ],
+                  "numbers_old": [
+                    "12"
+                  ],
+                  "numeric_change": true,
+                  "qualifiers_new": [],
+                  "qualifiers_old": [],
+                  "negation_change": false,
+                  "qualifier_change": false
+                }
+              }
+            }
+          }
+        ],
+        "applicability_changes": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r2",
+            "document_id": "pricing",
+            "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r2:0001",
+            "change_ordinal": 1,
+            "parent_snapshot_id": "snap:000001",
+            "result_snapshot_id": "snap:000002",
+            "interval_from": "2026-12-01T00:00:00.000Z",
+            "interval_to": null,
+            "old_effective_version_id": "dv:pricing@r1",
+            "new_effective_version_id": "dv:pricing@r2",
+            "old_effective_fingerprint": "sha256:208382b67f8252dd879f9d74f30a9594addb610f9c07c7d7bc84c6e9cc5b8c14",
+            "new_effective_fingerprint": "sha256:de210a28dc784bc128d9d1f8644925c6d4c2ded8b82192d2167d79f7917b4cb3",
+            "reason": "CONTENT",
+            "text_diff_reused": true,
+            "timeline_version": "timeline-v1"
+          }
+        ]
+      },
+      "r3": {
+        "delivery_id": "acc-2026-11-04t04-48-19-435z-r3",
+        "document_id": "pricing",
+        "parent_snapshot_id": "snap:000002",
+        "result_snapshot_id": "snap:000003",
+        "old_version": {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "document_id": "pricing",
+          "document_version_id": "dv:pricing@r2",
+          "source_revision_id": "r2",
+          "source_seq": 2,
+          "text": "Starter costs 15 USD.",
+          "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "source_bytes_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "object_key": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "normalization_version": "canon-v1",
+          "source_timestamp": "2026-02-15T00:00:00.000Z",
+          "declared_effective_from": "2026-12-01T00:00:00.000Z",
+          "effective_from": "2026-12-01T00:00:00.000Z",
+          "effective_from_source": "DECLARED_METADATA",
+          "source_type": "product_doc",
+          "authority": {},
+          "is_deletion": false,
+          "created_at": "2026-11-04T04:48:22.004Z",
+          "known_at_seq": 2,
+          "immutable_hash": "sha256:bd87fa24bd026a66050391c4d630a4a25679b2f0bb3ed9fd8528f3c3c00a568e"
+        },
+        "new_version": {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "document_id": "pricing",
+          "document_version_id": "dv:pricing@r3",
+          "source_revision_id": "r3",
+          "source_seq": 3,
+          "text": "Starter costs 15 USD.",
+          "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "source_bytes_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "object_key": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "normalization_version": "canon-v1",
+          "source_timestamp": "2026-03-15T00:00:00.000Z",
+          "declared_effective_from": "2026-04-01T00:00:00.000Z",
+          "effective_from": "2026-04-01T00:00:00.000Z",
+          "effective_from_source": "DECLARED_METADATA",
+          "source_type": "product_doc",
+          "authority": {},
+          "is_deletion": false,
+          "created_at": "2026-11-04T04:48:22.051Z",
+          "known_at_seq": 3,
+          "immutable_hash": "sha256:87ff4847c50083d96a41fd8809ca5f6f46f0bf0007e5c931ef603e13ed47f144"
+        },
+        "old_passages": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r2",
+            "passage_version_id": "pv:pricing@r2#p0001",
+            "ordinal": 1,
+            "start": 0,
+            "end": 21,
+            "text": "Starter costs 15 USD.",
+            "section_path": [],
+            "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "norm_hash": "sha256:f6679fbda3fbb4eed342ee7cf45c1c7165b247f566083f6fbba474577b31e39e",
+            "lineage_id": "lin:pricing:r1:p0001",
+            "segmentation_version": "seg-v1",
+            "norm_version": "norm-v1"
+          }
+        ],
+        "new_passages": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r3",
+            "passage_version_id": "pv:pricing@r3#p0001",
+            "ordinal": 1,
+            "start": 0,
+            "end": 21,
+            "text": "Starter costs 15 USD.",
+            "section_path": [],
+            "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "norm_hash": "sha256:f6679fbda3fbb4eed342ee7cf45c1c7165b247f566083f6fbba474577b31e39e",
+            "lineage_id": "lin:pricing:r1:p0001",
+            "segmentation_version": "seg-v1",
+            "norm_version": "norm-v1"
+          }
+        ],
+        "edges": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r3",
+            "lineage_edge_id": "le:acc-2026-11-04t04-48-19-435z-r3:0001",
+            "edge_ordinal": 1,
+            "from_passage_version_ids": [
+              "pv:pricing@r2#p0001"
+            ],
+            "to_passage_version_ids": [
+              "pv:pricing@r3#p0001"
+            ],
+            "relation": "IDENTICAL",
+            "alignment_score": 1,
+            "alignment_confidence": "HIGH",
+            "alignment_method": "diff-v1/dice-v1",
+            "reason": {}
+          }
+        ],
+        "timeline_alignments": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r3",
+            "timeline_alignment_edge_id": "ta:acc-2026-11-04t04-48-19-435z-r3:0001",
+            "alignment_ordinal": 1,
+            "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r3:0001",
+            "old_document_version_id": "dv:pricing@r1",
+            "new_document_version_id": "dv:pricing@r3",
+            "from_passage_version_ids": [
+              "pv:pricing@r1#p0001"
+            ],
+            "to_passage_version_ids": [
+              "pv:pricing@r3#p0001"
+            ],
+            "relation": "MODIFIED",
+            "alignment_score": 0.75,
+            "alignment_confidence": "HIGH",
+            "alignment_method": "diff-v1/dice-v1",
+            "reason": {
+              "runner_up": 0
+            },
+            "recorded_by": "timeline-v1",
+            "legacy_lineage_edge_id": null
+          }
+        ],
+        "spans": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r3",
+            "document_id": "pricing",
+            "change_span_id": "cs:acc-2026-11-04t04-48-19-435z-r3:0001",
+            "span_ordinal": 1,
+            "old_document_version_id": "dv:pricing@r1",
+            "new_document_version_id": "dv:pricing@r3",
+            "old_passage_version_id": "pv:pricing@r1#p0001",
+            "new_passage_version_id": "pv:pricing@r3#p0001",
+            "kind": "MODIFIED",
+            "lineage_edge_id": null,
+            "timeline_alignment_edge_id": "ta:acc-2026-11-04t04-48-19-435z-r3:0001",
+            "reclassified_lineage_edge_id": null,
+            "old_start": 14,
+            "old_end": 16,
+            "new_start": 14,
+            "new_end": 16,
+            "old_text": "12",
+            "new_text": "15",
+            "features": {
+              "numeric_change": true,
+              "numbers_old": [
+                "12"
+              ],
+              "numbers_new": [
+                "15"
+              ],
+              "date_change": false,
+              "dates_old": [],
+              "dates_new": [],
+              "negation_change": false,
+              "qualifiers_old": [],
+              "qualifiers_new": [],
+              "qualifier_change": false
+            },
+            "alignment_confidence": "HIGH",
+            "effective_from": "2026-04-01T00:00:00.000Z",
+            "effective_to": "2026-12-01T00:00:00.000Z",
+            "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r3:0001",
+            "text_diff_reused": false,
+            "feature_version": "features-v1",
+            "origin": "TIMELINE",
+            "metadata": {
+              "opcode": "replace",
+              "feature_evidence": {
+                "new": {
+                  "span_end": 16,
+                  "span_start": 14,
+                  "context_end": 21,
+                  "context_text": "Starter costs 15 USD.",
+                  "context_start": 0,
+                  "context_passage": "pv:pricing@r3#p0001",
+                  "opcode_boundary": null,
+                  "boundary_affinity": null
+                },
+                "old": {
+                  "span_end": 16,
+                  "span_start": 14,
+                  "context_end": 21,
+                  "context_text": "Starter costs 12 USD.",
+                  "context_start": 0,
+                  "context_passage": "pv:pricing@r1#p0001",
+                  "opcode_boundary": null,
+                  "boundary_affinity": null
+                },
+                "local": {
+                  "dates_new": [],
+                  "dates_old": [],
+                  "date_change": false,
+                  "numbers_new": [
+                    "15"
+                  ],
+                  "numbers_old": [
+                    "12"
+                  ],
+                  "numeric_change": true,
+                  "qualifiers_new": [],
+                  "qualifiers_old": [],
+                  "negation_change": false,
+                  "qualifier_change": false
+                },
+                "boundary": "sentences-v1; empty opcode uses corresponding neighbor affinity",
+                "selection": "smallest containing sentence within each passage",
+                "implementation": "features-v1-symmetric-context-2026-11-04",
+                "containing_sentence": {
+                  "dates_new": [],
+                  "dates_old": [],
+                  "date_change": false,
+                  "numbers_new": [
+                    "15"
+                  ],
+                  "numbers_old": [
+                    "12"
+                  ],
+                  "numeric_change": true,
+                  "qualifiers_new": [],
+                  "qualifiers_old": [],
+                  "negation_change": false,
+                  "qualifier_change": false
+                }
+              }
+            }
+          }
+        ],
+        "applicability_changes": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r3",
+            "document_id": "pricing",
+            "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r3:0001",
+            "change_ordinal": 1,
+            "parent_snapshot_id": "snap:000002",
+            "result_snapshot_id": "snap:000003",
+            "interval_from": "2026-04-01T00:00:00.000Z",
+            "interval_to": "2026-12-01T00:00:00.000Z",
+            "old_effective_version_id": "dv:pricing@r1",
+            "new_effective_version_id": "dv:pricing@r3",
+            "old_effective_fingerprint": "sha256:208382b67f8252dd879f9d74f30a9594addb610f9c07c7d7bc84c6e9cc5b8c14",
+            "new_effective_fingerprint": "sha256:de210a28dc784bc128d9d1f8644925c6d4c2ded8b82192d2167d79f7917b4cb3",
+            "reason": "CONTENT",
+            "text_diff_reused": false,
+            "timeline_version": "timeline-v1"
+          }
+        ]
+      },
+      "r4": {
+        "delivery_id": "acc-2026-11-04t04-48-19-435z-r4",
+        "document_id": "pricing",
+        "parent_snapshot_id": "snap:000003",
+        "result_snapshot_id": "snap:000004",
+        "old_version": {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "document_id": "pricing",
+          "document_version_id": "dv:pricing@r3",
+          "source_revision_id": "r3",
+          "source_seq": 3,
+          "text": "Starter costs 15 USD.",
+          "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "source_bytes_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "object_key": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "normalization_version": "canon-v1",
+          "source_timestamp": "2026-03-15T00:00:00.000Z",
+          "declared_effective_from": "2026-04-01T00:00:00.000Z",
+          "effective_from": "2026-04-01T00:00:00.000Z",
+          "effective_from_source": "DECLARED_METADATA",
+          "source_type": "product_doc",
+          "authority": {},
+          "is_deletion": false,
+          "created_at": "2026-11-04T04:48:22.051Z",
+          "known_at_seq": 3,
+          "immutable_hash": "sha256:87ff4847c50083d96a41fd8809ca5f6f46f0bf0007e5c931ef603e13ed47f144"
+        },
+        "new_version": {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "document_id": "pricing",
+          "document_version_id": "dv:pricing@r4",
+          "source_revision_id": "r4",
+          "source_seq": 4,
+          "text": "Starter costs 15 USD.",
+          "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "source_bytes_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "object_key": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "normalization_version": "canon-v1",
+          "source_timestamp": "2026-04-15T00:00:00.000Z",
+          "declared_effective_from": "2026-04-01T00:00:00.000Z",
+          "effective_from": "2026-04-01T00:00:00.000Z",
+          "effective_from_source": "DECLARED_METADATA",
+          "source_type": "legal_notice",
+          "authority": {},
+          "is_deletion": false,
+          "created_at": "2026-11-04T04:48:22.092Z",
+          "known_at_seq": 4,
+          "immutable_hash": "sha256:0cf69c82073ecaf0b2c1f0b70e8b6d79f998eca1dc8fd7d63dd39c8e97429534"
+        },
+        "old_passages": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r3",
+            "passage_version_id": "pv:pricing@r3#p0001",
+            "ordinal": 1,
+            "start": 0,
+            "end": 21,
+            "text": "Starter costs 15 USD.",
+            "section_path": [],
+            "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "norm_hash": "sha256:f6679fbda3fbb4eed342ee7cf45c1c7165b247f566083f6fbba474577b31e39e",
+            "lineage_id": "lin:pricing:r1:p0001",
+            "segmentation_version": "seg-v1",
+            "norm_version": "norm-v1"
+          }
+        ],
+        "new_passages": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r4",
+            "passage_version_id": "pv:pricing@r4#p0001",
+            "ordinal": 1,
+            "start": 0,
+            "end": 21,
+            "text": "Starter costs 15 USD.",
+            "section_path": [],
+            "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "norm_hash": "sha256:f6679fbda3fbb4eed342ee7cf45c1c7165b247f566083f6fbba474577b31e39e",
+            "lineage_id": "lin:pricing:r1:p0001",
+            "segmentation_version": "seg-v1",
+            "norm_version": "norm-v1"
+          }
+        ],
+        "edges": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r4",
+            "lineage_edge_id": "le:acc-2026-11-04t04-48-19-435z-r4:0001",
+            "edge_ordinal": 1,
+            "from_passage_version_ids": [
+              "pv:pricing@r3#p0001"
+            ],
+            "to_passage_version_ids": [
+              "pv:pricing@r4#p0001"
+            ],
+            "relation": "IDENTICAL",
+            "alignment_score": 1,
+            "alignment_confidence": "HIGH",
+            "alignment_method": "diff-v1/dice-v1",
+            "reason": {}
+          }
+        ],
+        "timeline_alignments": [],
+        "spans": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r4",
+            "document_id": "pricing",
+            "change_span_id": "cs:acc-2026-11-04t04-48-19-435z-r4:0001",
+            "span_ordinal": 1,
+            "old_document_version_id": "dv:pricing@r3",
+            "new_document_version_id": "dv:pricing@r4",
+            "old_passage_version_id": null,
+            "new_passage_version_id": null,
+            "kind": "AUTHORITY_CHANGED",
+            "lineage_edge_id": null,
+            "timeline_alignment_edge_id": null,
+            "reclassified_lineage_edge_id": null,
+            "old_start": null,
+            "old_end": null,
+            "new_start": null,
+            "new_end": null,
+            "old_text": null,
+            "new_text": null,
+            "features": {
+              "numeric_change": false,
+              "numbers_old": [],
+              "numbers_new": [],
+              "date_change": false,
+              "dates_old": [],
+              "dates_new": [],
+              "negation_change": false,
+              "qualifiers_old": [],
+              "qualifiers_new": [],
+              "qualifier_change": false
+            },
+            "alignment_confidence": "HIGH",
+            "effective_from": "2026-04-01T00:00:00.000Z",
+            "effective_to": "2026-12-01T00:00:00.000Z",
+            "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r4:0001",
+            "text_diff_reused": false,
+            "feature_version": "features-v1",
+            "origin": "AUTHORITY",
+            "metadata": {
+              "new_authority": {},
+              "old_authority": {},
+              "new_source_type": "legal_notice",
+              "old_source_type": "product_doc"
+            }
+          }
+        ],
+        "applicability_changes": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r4",
+            "document_id": "pricing",
+            "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r4:0001",
+            "change_ordinal": 1,
+            "parent_snapshot_id": "snap:000003",
+            "result_snapshot_id": "snap:000004",
+            "interval_from": "2026-04-01T00:00:00.000Z",
+            "interval_to": "2026-12-01T00:00:00.000Z",
+            "old_effective_version_id": "dv:pricing@r3",
+            "new_effective_version_id": "dv:pricing@r4",
+            "old_effective_fingerprint": "sha256:de210a28dc784bc128d9d1f8644925c6d4c2ded8b82192d2167d79f7917b4cb3",
+            "new_effective_fingerprint": "sha256:275fff0471be5045038fd4bc71de17d7c4321f80c9913602b9253471bdf6fa2b",
+            "reason": "AUTHORITY",
+            "text_diff_reused": false,
+            "timeline_version": "timeline-v1"
+          }
+        ]
+      },
+      "r5": {
+        "delivery_id": "acc-2026-11-04t04-48-19-435z-r5",
+        "document_id": "pricing",
+        "parent_snapshot_id": "snap:000004",
+        "result_snapshot_id": "snap:000005",
+        "old_version": {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "document_id": "pricing",
+          "document_version_id": "dv:pricing@r4",
+          "source_revision_id": "r4",
+          "source_seq": 4,
+          "text": "Starter costs 15 USD.",
+          "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "source_bytes_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "object_key": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+          "normalization_version": "canon-v1",
+          "source_timestamp": "2026-04-15T00:00:00.000Z",
+          "declared_effective_from": "2026-04-01T00:00:00.000Z",
+          "effective_from": "2026-04-01T00:00:00.000Z",
+          "effective_from_source": "DECLARED_METADATA",
+          "source_type": "legal_notice",
+          "authority": {},
+          "is_deletion": false,
+          "created_at": "2026-11-04T04:48:22.092Z",
+          "known_at_seq": 4,
+          "immutable_hash": "sha256:0cf69c82073ecaf0b2c1f0b70e8b6d79f998eca1dc8fd7d63dd39c8e97429534"
+        },
+        "new_version": {
+          "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+          "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+          "document_id": "pricing",
+          "document_version_id": "dv:pricing@r5",
+          "source_revision_id": "r5",
+          "source_seq": 5,
+          "text": "",
+          "content_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_bytes_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "object_key": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "normalization_version": "canon-v1",
+          "source_timestamp": "2026-05-15T00:00:00.000Z",
+          "declared_effective_from": "2027-01-01T00:00:00.000Z",
+          "effective_from": "2027-01-01T00:00:00.000Z",
+          "effective_from_source": "DECLARED_METADATA",
+          "source_type": "legal_notice",
+          "authority": {},
+          "is_deletion": true,
+          "created_at": "2026-11-04T04:48:22.121Z",
+          "known_at_seq": 5,
+          "immutable_hash": "sha256:5bb2293cc74e485028a4a1312e4df5848c50f383cb5ea58533bfd96fa0932571"
+        },
+        "old_passages": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "document_version_id": "dv:pricing@r4",
+            "passage_version_id": "pv:pricing@r4#p0001",
+            "ordinal": 1,
+            "start": 0,
+            "end": 21,
+            "text": "Starter costs 15 USD.",
+            "section_path": [],
+            "content_hash": "sha256:13c1b4a02de3e0f290d2a4f10bd41feff8b1c73ed8a4dce8dc2ed9f7d6a83a89",
+            "norm_hash": "sha256:f6679fbda3fbb4eed342ee7cf45c1c7165b247f566083f6fbba474577b31e39e",
+            "lineage_id": "lin:pricing:r1:p0001",
+            "segmentation_version": "seg-v1",
+            "norm_version": "norm-v1"
+          }
+        ],
+        "new_passages": [],
+        "edges": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "document_id": "pricing",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r5",
+            "lineage_edge_id": "le:acc-2026-11-04t04-48-19-435z-r5:0001",
+            "edge_ordinal": 1,
+            "from_passage_version_ids": [
+              "pv:pricing@r4#p0001"
+            ],
+            "to_passage_version_ids": [],
+            "relation": "DELETED",
+            "alignment_score": null,
+            "alignment_confidence": "HIGH",
+            "alignment_method": "diff-v1/dice-v1",
+            "reason": {}
+          }
+        ],
+        "timeline_alignments": [],
+        "spans": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r5",
+            "document_id": "pricing",
+            "change_span_id": "cs:acc-2026-11-04t04-48-19-435z-r5:0001",
+            "span_ordinal": 1,
+            "old_document_version_id": "dv:pricing@r4",
+            "new_document_version_id": "dv:pricing@r5",
+            "old_passage_version_id": null,
+            "new_passage_version_id": null,
+            "kind": "DOCUMENT_DELETED",
+            "lineage_edge_id": null,
+            "timeline_alignment_edge_id": null,
+            "reclassified_lineage_edge_id": null,
+            "old_start": 0,
+            "old_end": 21,
+            "new_start": null,
+            "new_end": null,
+            "old_text": "Starter costs 15 USD.",
+            "new_text": null,
+            "features": {
+              "numeric_change": true,
+              "numbers_old": [
+                "15"
+              ],
+              "numbers_new": [],
+              "date_change": false,
+              "dates_old": [],
+              "dates_new": [],
+              "negation_change": false,
+              "qualifiers_old": [],
+              "qualifiers_new": [],
+              "qualifier_change": false
+            },
+            "alignment_confidence": "HIGH",
+            "effective_from": "2027-01-01T00:00:00.000Z",
+            "effective_to": null,
+            "applicability_change_id": null,
+            "text_diff_reused": false,
+            "feature_version": "features-v1",
+            "origin": "LATEST_OBSERVED",
+            "metadata": {}
+          }
+        ],
+        "applicability_changes": [
+          {
+            "workspace_id": "1a71c605-7c93-47f0-9a89-85695294ac7d",
+            "corpus_id": "acceptance-2026-11-04t04-48-19-435z",
+            "update_event_id": "upd:acc-2026-11-04t04-48-19-435z-r5",
+            "document_id": "pricing",
+            "applicability_change_id": "ac:acc-2026-11-04t04-48-19-435z-r5:0001",
+            "change_ordinal": 1,
+            "parent_snapshot_id": "snap:000004",
+            "result_snapshot_id": "snap:000005",
+            "interval_from": "2027-01-01T00:00:00.000Z",
+            "interval_to": null,
+            "old_effective_version_id": "dv:pricing@r2",
+            "new_effective_version_id": null,
+            "old_effective_fingerprint": "sha256:de210a28dc784bc128d9d1f8644925c6d4c2ded8b82192d2167d79f7917b4cb3",
+            "new_effective_fingerprint": "sha256:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "reason": "DELETION",
+            "text_diff_reused": false,
+            "timeline_version": "timeline-v1"
+          }
+        ]
+      }
+    },
+    "ui": {
+      "r1": {
+        "before": "No earlier version",
+        "lineage": [
+          "ADDED"
+        ],
+        "timeline": [],
+        "spans": [
+          {
+            "kind": "DOCUMENT_ADDED",
+            "header": "LATEST_OBSERVED / HIGH ALIGNMENT",
+            "before": "Before∅–∅∅ No textual side",
+            "after": "After0–21Starter costs 12 USD."
+          }
+        ],
+        "applicability": [
+          "ADDITION2026-01-01T00:00:00.000Z → openAbsent → dv:pricing@r1Reuses latest-observed text span / ∅ → snap:000001"
+        ],
+        "alerts": []
+      },
+      "r2": {
+        "before": "dv:pricing@r1",
+        "lineage": [
+          "MODIFIED"
+        ],
+        "timeline": [],
+        "spans": [
+          {
+            "kind": "MODIFIED",
+            "header": "LATEST_OBSERVED / HIGH ALIGNMENT",
+            "before": "Before14–1612",
+            "after": "After14–1615"
+          }
+        ],
+        "applicability": [
+          "CONTENT2026-12-01T00:00:00.000Z → opendv:pricing@r1 → dv:pricing@r2Reuses latest-observed text span / snap:000001 → snap:000002"
+        ],
+        "alerts": []
+      },
+      "r3": {
+        "before": "dv:pricing@r2",
+        "lineage": [
+          "IDENTICAL"
+        ],
+        "timeline": [
+          "ta:acc-2026-11-04t04-48-19-435z-r3:0001MODIFIEDHIGH comparison confidence / 0.75pv:pricing@r1#p0001 → pv:pricing@r3#p0001 / ac:acc-2026-11-04t04-48-19-435z-r3:0001"
+        ],
+        "spans": [
+          {
+            "kind": "MODIFIED",
+            "header": "TIMELINE / HIGH ALIGNMENT",
+            "before": "Before14–1612",
+            "after": "After14–1615"
+          }
+        ],
+        "applicability": [
+          "CONTENT2026-04-01T00:00:00.000Z → 2026-12-01T00:00:00.000Zdv:pricing@r1 → dv:pricing@r3Timeline-specific comparison / snap:000002 → snap:000003"
+        ],
+        "alerts": []
+      },
+      "r4": {
+        "before": "dv:pricing@r3",
+        "lineage": [
+          "IDENTICAL"
+        ],
+        "timeline": [],
+        "spans": [
+          {
+            "kind": "AUTHORITY_CHANGED",
+            "header": "AUTHORITY / HIGH ALIGNMENT",
+            "before": "Before∅–∅∅ No textual side",
+            "after": "After∅–∅∅ No textual side"
+          }
+        ],
+        "applicability": [
+          "AUTHORITY2026-04-01T00:00:00.000Z → 2026-12-01T00:00:00.000Zdv:pricing@r3 → dv:pricing@r4Timeline-specific comparison / snap:000003 → snap:000004"
+        ],
+        "alerts": []
+      },
+      "r5": {
+        "before": "dv:pricing@r4",
+        "lineage": [
+          "DELETED"
+        ],
+        "timeline": [],
+        "spans": [
+          {
+            "kind": "DOCUMENT_DELETED",
+            "header": "LATEST_OBSERVED / HIGH ALIGNMENT",
+            "before": "Before0–21Starter costs 15 USD.",
+            "after": "After∅–∅∅ No textual side"
+          }
+        ],
+        "applicability": [
+          "DELETION2027-01-01T00:00:00.000Z → opendv:pricing@r2 → AbsentTimeline-specific comparison / snap:000004 → snap:000005"
+        ],
+        "alerts": []
+      }
+    },
+    "home-1280": {
+      "requestedWidth": 1280,
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "title": null,
+      "sculpture": null,
+      "titleSculptureOverlap": null,
+      "wordmark": {
+        "left": 47.59375,
+        "top": 126.65869140625,
+        "right": 1226.25,
+        "bottom": 358.26806640625
+      }
+    },
+    "workspace-1280": {
+      "requestedWidth": 1280,
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "title": {
+        "left": 40,
+        "top": 152.5,
+        "right": 1172.96875,
+        "bottom": 293.8125
+      },
+      "sculpture": {
+        "left": 746.354248046875,
+        "top": 187.42852783203125,
+        "right": 1134.552001953125,
+        "bottom": 486.36834716796875
+      },
+      "titleSculptureOverlap": 41298.01904723048,
+      "wordmark": null
+    },
+    "inspect-r3-1280": {
+      "requestedWidth": 1280,
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "title": {
+        "left": 40,
+        "top": 152.5,
+        "right": 687.484375,
+        "bottom": 232.5
+      },
+      "sculpture": {
+        "left": 911.8711547851562,
+        "top": 75.52507019042969,
+        "right": 1142.69140625,
+        "bottom": 253.2718048095703
+      },
+      "titleSculptureOverlap": 0,
+      "wordmark": null
+    },
+    "home-760": {
+      "requestedWidth": 760,
+      "innerWidth": 760,
+      "clientWidth": 760,
+      "scrollWidth": 760,
+      "bodyScrollWidth": 760,
+      "title": null,
+      "sculpture": null,
+      "titleSculptureOverlap": null,
+      "wordmark": {
+        "left": 28.25,
+        "top": 125.40626525878906,
+        "right": 728.09375,
+        "bottom": 262.921875
+      }
+    },
+    "workspace-760": {
+      "requestedWidth": 760,
+      "innerWidth": 760,
+      "clientWidth": 760,
+      "scrollWidth": 760,
+      "bodyScrollWidth": 760,
+      "title": {
+        "left": 14,
+        "top": 137,
+        "right": 591.140625,
+        "bottom": 209
+      },
+      "sculpture": {
+        "left": 240,
+        "top": 303.375,
+        "right": 520,
+        "bottom": 510.5625
+      },
+      "titleSculptureOverlap": 0,
+      "wordmark": null
+    },
+    "inspect-r3-760": {
+      "requestedWidth": 760,
+      "innerWidth": 760,
+      "clientWidth": 760,
+      "scrollWidth": 760,
+      "bodyScrollWidth": 760,
+      "title": {
+        "left": 14,
+        "top": 137,
+        "right": 591.140625,
+        "bottom": 209
+      },
+      "sculpture": {
+        "left": 270,
+        "top": 219,
+        "right": 490,
+        "bottom": 381.796875
+      },
+      "titleSculptureOverlap": 0,
+      "wordmark": null
+    },
+    "home-390": {
+      "requestedWidth": 390,
+      "innerWidth": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "title": null,
+      "sculpture": null,
+      "titleSculptureOverlap": null,
+      "wordmark": {
+        "left": 17.640625,
+        "top": 107.90650177001953,
+        "right": 370.5,
+        "bottom": 182.390869140625
+      }
+    },
+    "workspace-390": {
+      "requestedWidth": 390,
+      "innerWidth": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "title": {
+        "left": 14,
+        "top": 137,
+        "right": 324.890625,
+        "bottom": 175.375
+      },
+      "sculpture": {
+        "left": 55,
+        "top": 269.75,
+        "right": 335,
+        "bottom": 476.9375
+      },
+      "titleSculptureOverlap": 0,
+      "wordmark": null
+    },
+    "inspect-r3-390": {
+      "requestedWidth": 390,
+      "innerWidth": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "title": {
+        "left": 14,
+        "top": 137,
+        "right": 280.421875,
+        "bottom": 169.75
+      },
+      "sculpture": {
+        "left": 85,
+        "top": 179.75,
+        "right": 305,
+        "bottom": 342.546875
+      },
+      "titleSculptureOverlap": 0,
+      "wordmark": null
+    },
+    "home-320": {
+      "requestedWidth": 320,
+      "innerWidth": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "bodyScrollWidth": 320,
+      "title": null,
+      "sculpture": null,
+      "titleSculptureOverlap": null,
+      "wordmark": {
+        "left": 14.484375,
+        "top": 107.90570831298828,
+        "right": 304,
+        "bottom": 169.03070068359375
+      }
+    },
+    "workspace-320": {
+      "requestedWidth": 320,
+      "innerWidth": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "bodyScrollWidth": 320,
+      "title": {
+        "left": 14,
+        "top": 162.5,
+        "right": 270.34375,
+        "bottom": 193.984375
+      },
+      "sculpture": {
+        "left": 35.203125,
+        "top": 288.359375,
+        "right": 284.796875,
+        "bottom": 473.046875
+      },
+      "titleSculptureOverlap": 0,
+      "wordmark": null
+    },
+    "inspect-r3-320": {
+      "requestedWidth": 320,
+      "innerWidth": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "bodyScrollWidth": 320,
+      "title": {
+        "left": 14,
+        "top": 162.5,
+        "right": 233.796875,
+        "bottom": 189.375
+      },
+      "sculpture": {
+        "left": 60.796875,
+        "top": 199.375,
+        "right": 259.1875,
+        "bottom": 346.171875
+      },
+      "titleSculptureOverlap": 0,
+      "wordmark": null
+    },
+    "reduced_motion": {
+      "matches": true,
+      "animation": "none",
+      "scrollBehavior": "auto"
+    },
+    "keyboard_workspace": [
+      {
+        "tag": "A",
+        "label": "Skip to workspace content",
+        "visible": true
+      },
+      {
+        "tag": "A",
+        "label": "AFTERMATH homepage",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Live workspace",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Example workspace ↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "01Overview↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "02Inspect changes↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "03Experiments↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Check again ↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Refresh storage ↻",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Workspace",
+        "visible": true
+      },
+      {
+        "tag": "SUMMARY",
+        "label": "Create a workspace or corpus",
+        "visible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "Skip to workspace content←✳ AFTERMATH / A RESEARCH",
+        "visible": false
+      },
+      {
+        "tag": "A",
+        "label": "Skip to workspace content",
+        "visible": true
+      },
+      {
+        "tag": "A",
+        "label": "AFTERMATH homepage",
+        "visible": true
+      }
+    ],
+    "keyboard_inspect": [
+      {
+        "tag": "A",
+        "label": "Skip to workspace content",
+        "visible": true
+      },
+      {
+        "tag": "A",
+        "label": "AFTERMATH homepage",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Live workspace",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Example workspace ↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "01Overview↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "02Inspect changes↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "03Experiments↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Check again ↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Retry / refresh ↻",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Workspace",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Corpus",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Applied update",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Changed document",
+        "visible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "Skip to workspace content←✳ AFTERMATH / A RESEARCH",
+        "visible": false
+      },
+      {
+        "tag": "A",
+        "label": "Skip to workspace content",
+        "visible": true
+      },
+      {
+        "tag": "A",
+        "label": "AFTERMATH homepage",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Live workspace",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Example workspace ↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "01Overview↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "02Inspect changes↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "03Experiments↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Check again ↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Retry / refresh ↻",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Workspace",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Corpus",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Applied update",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Changed document",
+        "visible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "Skip to workspace content←✳ AFTERMATH / A RESEARCH",
+        "visible": false
+      },
+      {
+        "tag": "A",
+        "label": "Skip to workspace content",
+        "visible": true
+      },
+      {
+        "tag": "A",
+        "label": "AFTERMATH homepage",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Live workspace",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Example workspace ↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "01Overview↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "02Inspect changes↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "03Experiments↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Check again ↗",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Retry / refresh ↻",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Workspace",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Corpus",
+        "visible": true
+      },
+      {
+        "tag": "SELECT",
+        "label": "Applied update",
+        "visible": true
+      }
+    ]
+  },
+  "screenshots": [
+    "healthy-workspace-1280.png",
+    "inspect-r1-1280.png",
+    "inspect-r2-1280.png",
+    "inspect-r3-1280.png",
+    "inspect-r4-1280.png",
+    "inspect-r5-1280.png",
+    "recovery-1-failed.png",
+    "recovery-2-recovered.png",
+    "home-1280.png",
+    "workspace-1280.png",
+    "inspect-r3-1280.png",
+    "home-760.png",
+    "workspace-760.png",
+    "inspect-r3-760.png",
+    "home-390.png",
+    "workspace-390.png",
+    "inspect-r3-390.png",
+    "home-320.png",
+    "workspace-320.png",
+    "inspect-r3-320.png",
+    "keyboard-inspect-390.png"
+  ],
+  "console": [
+    {
+      "label": "healthy-main",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://127.0.0.1:3001/api/storage/workspaces/1a71c605-7c93-47f0-9a89-85695294ac7d/corpora/acceptance-2026-11-04t04-48-19-435z/updates/acc-2026-11-04t04-48-19-435z-r2/documents/pricing/comparison",
+      "expected": true,
+      "scenario": "injected-not-found",
+      "category": "http-resource"
+    },
+    {
+      "label": "healthy-main",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "url": "http://127.0.0.1:3001/api/storage/workspaces/1a71c605-7c93-47f0-9a89-85695294ac7d/corpora/acceptance-2026-11-04t04-48-19-435z/updates/acc-2026-11-04t04-48-19-435z-r2/documents/pricing/comparison",
+      "expected": true,
+      "scenario": "injected-retry-failure",
+      "category": "http-resource"
+    }
+  ],
+  "finished_at": "2026-11-04T04:48:47.754Z"
+}

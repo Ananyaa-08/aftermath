@@ -1,0 +1,203 @@
+{
+  "state": "backend-down",
+  "web": "http://127.0.0.1:3001",
+  "started_at": "2026-11-03T16:19:01.713Z",
+  "browser": "chromium 156.0.8078.4",
+  "checks": [
+    {
+      "name": "@1280: /api/connectivity reports unreachable",
+      "passed": true,
+      "status": 503,
+      "body": {
+        "status": "unreachable"
+      }
+    },
+    {
+      "name": "@1280: connection bar shows \"Backend could not be reached\"",
+      "passed": true
+    },
+    {
+      "name": "@1280: inspect view shows UNREACHABLE, substitutes no examples, renders no comparison",
+      "passed": true,
+      "alert": "CHANGE RECORDS UNAVAILABLEUNREACHABLE · Storage request could not complete; refresh before retrying a deliveryNo example changes were substituted."
+    },
+    {
+      "name": "@1280: requested, inner and client widths match with no overflow",
+      "passed": true,
+      "requestedWidth": 1280,
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "scrollWidth": 1280
+    },
+    {
+      "name": "@390: /api/connectivity reports unreachable",
+      "passed": true,
+      "status": 503,
+      "body": {
+        "status": "unreachable"
+      }
+    },
+    {
+      "name": "@390: connection bar shows \"Backend could not be reached\"",
+      "passed": true
+    },
+    {
+      "name": "@390: inspect view shows UNREACHABLE, substitutes no examples, renders no comparison",
+      "passed": true,
+      "alert": "CHANGE RECORDS UNAVAILABLEUNREACHABLE · Storage request could not complete; refresh before retrying a deliveryNo example changes were substituted."
+    },
+    {
+      "name": "@390: requested, inner and client widths match with no overflow",
+      "passed": true,
+      "requestedWidth": 390,
+      "innerWidth": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "no unexpected browser console or page errors",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "notes": [],
+  "measurements": {
+    "connectivity-1280": {
+      "status": 503,
+      "body": {
+        "status": "unreachable"
+      }
+    },
+    "inspect-alert-1280": "CHANGE RECORDS UNAVAILABLEUNREACHABLE · Storage request could not complete; refresh before retrying a deliveryNo example changes were substituted.",
+    "layout-backend-down-1280": {
+      "requestedWidth": 1280,
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "title": {
+        "left": 40,
+        "top": 152.5,
+        "right": 687.484375,
+        "bottom": 232.5
+      },
+      "sculpture": {
+        "left": 911.8711547851562,
+        "top": 75.52507019042969,
+        "right": 1142.69140625,
+        "bottom": 253.2718048095703
+      },
+      "titleSculptureOverlap": 0,
+      "wordmark": null
+    },
+    "connectivity-390": {
+      "status": 503,
+      "body": {
+        "status": "unreachable"
+      }
+    },
+    "inspect-alert-390": "CHANGE RECORDS UNAVAILABLEUNREACHABLE · Storage request could not complete; refresh before retrying a deliveryNo example changes were substituted.",
+    "layout-backend-down-390": {
+      "requestedWidth": 390,
+      "innerWidth": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "title": {
+        "left": 14,
+        "top": 137,
+        "right": 280.421875,
+        "bottom": 169.75
+      },
+      "sculpture": {
+        "left": 85,
+        "top": 179.75,
+        "right": 305,
+        "bottom": 342.546875
+      },
+      "titleSculptureOverlap": 0,
+      "wordmark": null
+    }
+  },
+  "screenshots": [
+    "backend-down-workspace-1280.png",
+    "backend-down-inspect-1280.png",
+    "backend-down-workspace-390.png",
+    "backend-down-inspect-390.png"
+  ],
+  "console": [
+    {
+      "label": "backend-down-1280",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    },
+    {
+      "label": "backend-down-1280",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    },
+    {
+      "label": "backend-down-1280",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    },
+    {
+      "label": "backend-down-1280",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    },
+    {
+      "label": "backend-down-1280",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    },
+    {
+      "label": "backend-down-1280",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    },
+    {
+      "label": "backend-down-390",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    },
+    {
+      "label": "backend-down-390",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    },
+    {
+      "label": "backend-down-390",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    },
+    {
+      "label": "backend-down-390",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    },
+    {
+      "label": "backend-down-390",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    },
+    {
+      "label": "backend-down-390",
+      "kind": "console",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "expected": true
+    }
+  ],
+  "finished_at": "2026-11-03T16:19:06.029Z"
+}
