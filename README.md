@@ -8,7 +8,6 @@ AFTERMATH is a research prototype. A user uploads documents into a corpus and as
 
 When a document is later revised, AFTERMATH detects which stored passages changed, finds only the archived answers whose cited passage changed, and flags them for reassessment. Answers whose evidence did not change are left alone.
 
-This is a prototype for demonstrating the revalidation mechanism. It is not a production system and claims no benchmark results.
 
 ## Screenshots
 
